@@ -1,4 +1,13 @@
 @import "@coreui/coreui/scss/coreui.rtl";
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import "layout";
+@import "./app/prime-theme/theme";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
 
+@tailwind utilities;
+
+mr-input, mr-password, mr-select, mr-input-number {
+  display: block;
+  width: 100%;
+}
