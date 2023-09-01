@@ -10,6 +10,7 @@ import {MrInputComponent} from "../../components/mr-input/mr-input.component";
 import {MrPasswordComponent} from "../../components/mr-password/mr-password.component";
 import {MrInputNumberComponent} from "../../components/mr-input-number/mr-input-number.component";
 import {MrSelectComponent} from "../../components/mr-select/mr-select.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {MrSelectComponent} from "../../components/mr-select/mr-select.component"
     MrInputComponent,
     MrPasswordComponent,
     MrInputNumberComponent,
-    MrSelectComponent
+    MrSelectComponent,
+    ReactiveFormsModule
   ]
 })
 export class LoginModule {

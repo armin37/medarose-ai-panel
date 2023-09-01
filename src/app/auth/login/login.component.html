@@ -1,82 +1,43 @@
-<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+<div class="bg-light min-h-screen flex flex-row items-center justify-center">
+  <div class="flex flex-col lg:flex-row p-20 max-w-screen-lg">
+    <div class="w-full lg:w-1/2 !bg-white">
+      <div class="!p-8">
+        <h5 class="!mb-12">
+          ورود به حساب کاربری
+        </h5>
 
+        <form [formGroup]="form">
+          <div class="!mb-4">
+            <mr-input [control]="asFormControl(form.controls['username'])"
+                      placeholder="نام کاربری"
+                      direction="ltr"
+                      icon="user"></mr-input>
+          </div>
 
-<!--  <c-container>-->
-<!--    <c-row class="justify-content-center">-->
-<!--      <c-col md="8">-->
-<!--        <c-card-group>-->
-<!--          <c-card class="p-4">-->
-<!--            <c-card-body>-->
-<!--              <form cForm>-->
-<!--                <h1>Login</h1>-->
-<!--                <p class="text-medium-emphasis">Sign In to your account</p>-->
-<!--                <c-input-group class="mb-3">-->
-<!--                  <span cInputGroupText>-->
-<!--                    <svg cIcon name="cilUser"></svg>-->
-<!--                  </span>-->
-<!--                  <input autoComplete="username" cFormControl placeholder="Username"/>-->
-<!--                </c-input-group>-->
-<!--                <c-input-group class="mb-4">-->
-<!--                  <mr-input (changed)="inputChanged($event)" icon="search" placeholder="نام"></mr-input>-->
-<!--                </c-input-group>-->
+          <div>
+            <mr-password [control]="asFormControl(form.controls['password'])"
+                         placeholder="رمز عبور"></mr-password>
+          </div>
 
-<!--                <c-input-group class="mb-4">-->
-<!--                  <mr-password (changed)="passwordChanged($event)" [toggle]="true" [strength]="true"-->
-<!--                               placeholder="رمز عبور"></mr-password>-->
-<!--                </c-input-group>-->
+          <div class="flex justify-between !mt-8">
+            <mr-button (clicked)="login()" label="ورود"></mr-button>
+            <mr-button class="text-xs" label="فراموشی رمز عبور" shape="link"></mr-button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-<!--                <c-input-group class="mb-4">-->
-<!--                  <mr-select (changed)="selectItemChanged($event)" [options]="options" optionLabel="name"-->
-<!--                             optionValue="id" placeholder="انتخاب جنسیت"></mr-select>-->
-<!--                </c-input-group>-->
+    <div class="w-full lg:w-1/2 !bg-primary !text-white p-10 text-center">
+      <h4 class="mb-10">
+        ثبت نام
+      </h4>
 
-<!--                &lt;!&ndash;                <c-input-group class="mb-4">&ndash;&gt;-->
-<!--                &lt;!&ndash;                  <mr-input-number [showButtons]="true"></mr-input-number>&ndash;&gt;-->
-<!--                &lt;!&ndash;                </c-input-group>&ndash;&gt;-->
+      <p class="mb-5 text-justify">
+        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه
+        روزنامه و مجله در ستون و سطرآنچنان که لازم است
+      </p>
 
-<!--                <c-input-group class="mb-4">-->
-<!--                  <mr-input-number (changed)="inputNumberChanged($event)"-->
-<!--                                   suffix=" TMN"-->
-<!--                                   placeholder="مرتیکه گه"></mr-input-number>-->
-<!--                </c-input-group>-->
-
-<!--                &lt;!&ndash;                <c-input-group class="mb-4">&ndash;&gt;-->
-<!--                &lt;!&ndash;                  <mr-input-number placeholder="مرتیکه گه"></mr-input-number>&ndash;&gt;-->
-<!--                &lt;!&ndash;                </c-input-group>&ndash;&gt;-->
-
-<!--                <c-row>-->
-<!--                  <c-col xs="6">-->
-<!--                    <mr-button [loading]="true" label="ورود" size="sm" shape="rounded" class="d-block mb-3"></mr-button>-->
-<!--                    <mr-button label="ورود" class="d-block mb-3" color="info" shape="outlined" icon="plus"></mr-button>-->
-<!--                    <mr-button label="ورود" size="lg" shape="text" class="d-block mb-3"></mr-button>-->
-<!--                    <mr-button label="ورود" size="lg" shape="link" class="d-block mb-3"></mr-button>-->
-<!--                    <mr-button icon="check" color="success" size="lg" shape="rounded" class="d-block mb-3"></mr-button>-->
-<!--                    <mr-button icon="check" size="lg" shape="outlined p-button-rounded"-->
-<!--                               class="d-block mb-3"></mr-button>-->
-<!--                  </c-col>-->
-<!--                  <c-col class="text-right" xs="6">-->
-<!--                    <button cButton class="px-0" color="link">-->
-<!--                      Forgot password?-->
-<!--                    </button>-->
-<!--                  </c-col>-->
-<!--                </c-row>-->
-<!--              </form>-->
-<!--            </c-card-body>-->
-<!--          </c-card>-->
-<!--          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">-->
-<!--            <c-card-body class="text-center">-->
-<!--              <div>-->
-<!--                <h2>Sign up</h2>-->
-<!--                <p>-->
-<!--                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod-->
-<!--                  tempor incididunt ut labore et dolore magna aliqua.-->
-<!--                </p>-->
-<!--                <mr-button></mr-button>-->
-<!--              </div>-->
-<!--            </c-card-body>-->
-<!--          </c-card>-->
-<!--        </c-card-group>-->
-<!--      </c-col>-->
-<!--    </c-row>-->
-<!--  </c-container>-->
+      <mr-button color="secondary" label="ثبت نام"></mr-button>
+    </div>
+  </div>
 </div>

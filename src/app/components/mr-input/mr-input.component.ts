@@ -15,6 +15,7 @@ export class MrInputComponent {
   @Input() placeholder = '';
   @Input() size: 'sm' | '' | 'lg' = '';
   @Input() icon = '';
+  @Input() direction: 'ltr' | 'rtl' = 'rtl';
 
   @Output() changed = new EventEmitter();
 
