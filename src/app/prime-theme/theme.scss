@@ -52,15 +52,16 @@
   --focus-ring: 0 0 0 0.1rem #c9b8db;
   --highlight-bg: #e5ddee;
   --highlight-text-color: #664487;
-  --font-base: 0.8;
+  --font-base: 1rem;
+  --font-0: calc(var(--font-base) - 0.2rem);
   --font-1: var(--font-base);
-  --font-2: calc(var(--font-base) + 0.2) rem;
-  --font-3: var(--font-base + 0.4);
-  --font-4: var(--font-base + 0.6);
-  --font-5: var(--font-base + 0.8);
+  --font-2: calc(var(--font-base) + 0.2rem);
+  --font-3: calc(var(--font-base) + 0.4rem);
+  --font-4: calc(var(--font-base) + 0.6rem);
+  --font-5: calc(var(--font-base) + 0.8rem);
   --radius-1: 2px;
   --radius-2: 4px;
-  --btn-font-size: var(--font-2);
+  --btn-font-size: var(--font-0);
   --btn-sm-min-width: 4rem;
   --btn-sm-height: 1.8rem;
   --btn-min-width: 4.4rem;
@@ -70,6 +71,7 @@
   --btn-sm-padding: 0 1rem;
   --btn-padding: 0 1.2rem;
   --btn-lg-padding: 0 1.4rem;
+  --input-font-size: var(--font-1);
   --input-height: 2.2rem;
   --input-border-color: #eee;
   --input-hover-border-color: #e1e1e1;
@@ -77,35 +79,37 @@
   color-scheme: light
 }
 
-//@font-face {
-//  font-family: "Poppins";
-//  font-style: normal;
-//  font-weight: 300;
-//  src: local(""), url("./fonts/poppins-v15-latin-ext_latin-300.woff2") format("woff2"), url("./fonts/poppins-v15-latin-ext_latin-300.woff") format("woff")
-//}
-//
-//@font-face {
-//  font-family: "Poppins";
-//  font-style: normal;
-//  font-weight: 400;
-//  src: local(""), url("./fonts/poppins-v15-latin-ext_latin-regular.woff2") format("woff2"), url("./fonts/poppins-v15-latin-ext_latin-regular.woff") format("woff")
-//}
-//
-//@font-face {
-//  font-family: "Poppins";
-//  font-style: normal;
-//  font-weight: 600;
-//  src: local(""), url("./fonts/poppins-v15-latin-ext_latin-600.woff2") format("woff2"), url("./fonts/poppins-v15-latin-ext_latin-600.woff") format("woff")
-//}
-//
-//@font-face {
-//  font-family: "Poppins";
-//  font-style: normal;
-//  font-weight: 700;
-//  src: local(""), url("./fonts/poppins-v15-latin-ext_latin-700.woff2") format("woff2"), url("./fonts/poppins-v15-latin-ext_latin-700.woff") format("woff")
-//}
+@font-face {
+  font-family: "Iran Sans";
+  font-weight: 100;
+  font-style: normal;
+  src: url("/assets/fonts/iran-sans/100/IRANSansWeb(FaNum).woff2") format("woff2"),
+  url("/assets/fonts/iran-sans/100/IRANSansWeb(FaNum).woff") format("woff"),
+  url("/assets/fonts/iran-sans/100/IRANSansWeb(FaNum).ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Iran Sans";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/assets/fonts/iran-sans/400/IRANSansWeb(FaNum)_Medium.woff2") format("woff2"),
+  url("/assets/fonts/iran-sans/400/IRANSansWeb(FaNum)_Medium.woff") format("woff"),
+  url("/assets/fonts/iran-sans/400/IRANSansWeb(FaNum)_Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Iran Sans";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/assets/fonts/iran-sans/600/IRANSansWeb(FaNum)_Bold.woff2") format("woff2"),
+  url("/assets/fonts/iran-sans/600/IRANSansWeb(FaNum)_Bold.woff") format("woff"),
+  url("/assets/fonts/iran-sans/600/IRANSansWeb(FaNum)_Bold.ttf") format("truetype");
+}
+
 
 * {
+  font-family: "Iran Sans";
+  font-weight: 100;
   box-sizing: border-box
 }
 
@@ -1369,7 +1373,7 @@ p-inputswitch.ng-dirty.ng-invalid > .p-inputswitch {
 }
 
 .p-inputtext {
-  font-size: var(--input-font-size);
+  font-size: var(--font-1);
   border: 2px solid var(--input-border-color);
   height: var(--input-height);
   border-radius: var(--radius-2);
@@ -1380,14 +1384,23 @@ p-inputswitch.ng-dirty.ng-invalid > .p-inputswitch {
   appearance: none;
 
   &:-moz-placeholder {
+    font-family: "Iran Sans";
+    font-size: var(--font-0) !important;
+    font-weight: 100;
     text-align: right;
   }
 
   &:-ms-input-placeholder {
+    font-family: "Iran Sans";
+    font-size: var(--font-0) !important;
+    font-weight: 100;
     text-align: right;
   }
 
   &::-webkit-input-placeholder {
+    font-family: "Iran Sans";
+    font-size: var(--font-0) !important;
+    font-weight: 100;
     text-align: right;
   }
 }
