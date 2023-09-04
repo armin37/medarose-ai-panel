@@ -16,12 +16,12 @@ export class RegisterComponent implements OnInit {
       {
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword:['',Validators.required],
+      repassword:['',Validators.required],
       email: ['', [Validators.required, Validators.email,Validators.minLength(4)]]
     
       },
       {
-        //validator:confirmPasswordValidator("password","confirmPassword")
+        //validator:confirmPasswordValidator("password","repassword")
       }
     )
   }

@@ -31,6 +31,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MrInputNumberComponent,
     MrSelectComponent,
     ReactiveFormsModule
+    //--
   ]
 })
 export class RegisterModule { }
