@@ -8,9 +8,9 @@
 
         <form [formGroup]="form">
           <div class="!mb-4">
-            <mr-input [control]="asFormControl(form.controls['username'])"
-                      placeholder="نام کاربری"
-                      direction="rtl"
+            <mr-input [control]="asFormControl(form.controls['phone'])"
+                      placeholder="تلفن همراه"
+                      direction="ltr"
                       icon="user"></mr-input>
           </div>
 
@@ -18,32 +18,9 @@
             <mr-password [control]="asFormControl(form.controls['password'])"
                          placeholder="رمز عبور"></mr-password>
           </div>
-          <div class="!mb-4">
-            <mr-password 
-              [control]="asFormControl(form.controls['repassword'])"
-              placeholder=" تکرار رمز عبور"
-              direction="rtl">
-            </mr-password>
-          </div>
-          <div class="!mb-4">
-            <mr-input 
-              [control]="asFormControl(form.controls['nationalCode'])"
-              placeholder="کد ملی"
-              direction="rtl"
-              icon="pi pi-credit-card"
-            >
-            </mr-input>
-          </div>
-          <div class="!mb-4">
-            <mr-input 
-              [control]="asFormControl(form.controls['email'])"
-              placeholder="ایمیل"
-              direction="rtl"
-              icon = "pi pi-at">
-            </mr-input>
-          </div>
+
           <div class="flex justify-between !mt-15">
-            <mr-button (clicked)="login()" color="secondary" label="ثبت نام"></mr-button>
+            <mr-button (clicked)="register()" color="secondary" label="ثبت نام"></mr-button>
           </div>
         </form>
       </div>

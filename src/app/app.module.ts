@@ -9,6 +9,7 @@ import {GridModule, SidebarModule} from "@coreui/angular";
 import {DefaultHeaderComponent} from "./index/default-header/default-header.component";
 import {NgScrollbarModule} from "ngx-scrollbar";
 import {IconModule, IconSetService} from "@coreui/icons-angular";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {IconModule, IconSetService} from "@coreui/icons-angular";
     SidebarModule,
     GridModule,
     NgScrollbarModule,
-    IconModule
+    IconModule,
+    HttpClientModule
   ],
   providers: [
     IconSetService

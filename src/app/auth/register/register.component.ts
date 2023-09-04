@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {InsuranceEmployeeService} from "../../shared/services/insurance-employee/insurance-employee.service";
+import {RegisterResponseModel} from "../model/registerResponse.model";
+import {InsuranceEmployeeUserModel} from "../model/insuranceEmployeeUser.model";
 
 @Component({
   selector: 'app-register',
@@ -9,26 +12,29 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private insuranceEmployeeService: InsuranceEmployeeService) {
   }
+
   ngOnInit(): void {
     this.form = this.fb.group(
       {
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      repassword:['',Validators.required],
-      email: ['', [Validators.required, Validators.email,Validators.minLength(4)]]
-    
-      },
-      {
-        //validator:confirmPasswordValidator("password","repassword")
+        phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        companyId: [1, Validators.required],
       }
     )
   }
 
-  login() {
-    console.log(this.form.value)
+  register() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.insuranceEmployeeService.signup(this.form.value).subscribe((res: InsuranceEmployeeUserModel) => {
+      console.log(res);
+    })
   }
+
   asFormControl(control: AbstractControl): FormControl {
     return control as FormControl;
   }
