@@ -18,8 +18,13 @@ export class InsuranceEmployeeService {
 
   getCurrentUserProfile() {
     const res$ = this.requestService.sendRequest('GET', 'insurance-employee/profile');
-    res$.subscribe((res: ProfileResponseModel) => {
-      this.insuranceEmployeeInfoService.user = res.data.user;
+    res$.subscribe({
+      next: (res: ProfileResponseModel) => {
+        this.insuranceEmployeeInfoService.setUser(res.data, true);
+      }, error: (err) => {
+        this.insuranceEmployeeInfoService.setUser(undefined, true);
+        return err;
+      }
     });
     return res$;
   };
@@ -27,7 +32,7 @@ export class InsuranceEmployeeService {
   signup(body) {
     const res$ = this.requestService.sendRequest('POST', 'insurance-employee/signup', body);
     res$.pipe(map((res: RegisterResponseModel) => res.data)).subscribe((res: InsuranceEmployeeUserModel) => {
-      console.log(res);
+      // console.log(res);
     });
     return res$;
   };
@@ -35,7 +40,7 @@ export class InsuranceEmployeeService {
   login(body) {
     const res$ = this.requestService.sendRequest('POST', 'insurance-employee/login', body);
     res$.subscribe((res: LoginResponseModel) => {
-      this.insuranceEmployeeInfoService.user = res.data.user;
+      this.insuranceEmployeeInfoService.setUser(res.data.user, true);
       this.insuranceEmployeeInfoService.token = res.data.token;
       localStorage.setItem('token', res.data.token);
     });
