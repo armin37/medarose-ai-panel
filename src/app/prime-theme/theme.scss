@@ -1373,6 +1373,7 @@ p-inputswitch.ng-dirty.ng-invalid > .p-inputswitch {
 }
 
 .p-inputtext {
+  max-width: 100%;
   font-size: var(--font-1);
   border: 2px solid var(--input-border-color);
   height: var(--input-height);

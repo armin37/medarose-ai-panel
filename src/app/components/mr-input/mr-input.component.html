@@ -1,10 +1,10 @@
 <span class="mr-input-wrapper p-input-icon-right">
   <i [class]="'pi pi-' + icon"></i>
   <input (change)="valueChanged()"
+         [formControl]="control"
          [dir]="direction"
          type="text"
          pInputText
-         [formControl]="control"
          [placeholder]="placeholder"
          [class]="'p-inputtext-' + size"/>
 </span>

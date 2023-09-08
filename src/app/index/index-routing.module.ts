@@ -17,6 +17,24 @@ const routes: Routes = [
         path: 'insured/list',
         loadComponent: () => import('./insured/insured-list/insured-list.component').then(m => m.InsuredListComponent)
       },
+      {
+        path: 'insured/new',
+        loadComponent: () => import('./insured/new-edit-insured/new-edit-insured.component').then(m => m.NewEditInsuredComponent),
+        children: [
+          {
+            path: 'phone',
+            loadComponent: () => import('./insured/new-edit-insured/enter-mobile-step/enter-mobile-step.component').then(m => m.EnterMobileStepComponent),
+          },
+          {
+            path: 'approve-data',
+            loadComponent: () => import('./insured/new-edit-insured/data-and-code-step/data-and-code-step.component').then(m => m.DataAndCodeStepComponent),
+          }
+        ]
+      },
+      {
+        path: 'insured/edit/:id',
+        loadComponent: () => import('./insured/new-edit-insured/new-edit-insured.component').then(m => m.NewEditInsuredComponent)
+      },
     ]
   }
 ];

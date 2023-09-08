@@ -6,6 +6,7 @@ import {LoginResponseModel} from "../../../auth/model/loginResponse.model";
 import {InsuranceEmployeeUserModel} from "../../../auth/model/insuranceEmployeeUser.model";
 import {InsuranceEmployeeInfoService} from "../insurance-employee-info/insurance-employee-info.service";
 import {ProfileResponseModel} from "../../../auth/model/profileResponse.model";
+import {LoadingService} from "../loading/loading.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ import {ProfileResponseModel} from "../../../auth/model/profileResponse.model";
 export class InsuranceEmployeeService {
 
   constructor(private requestService: RequestService,
+              private loadingService: LoadingService,
               private insuranceEmployeeInfoService: InsuranceEmployeeInfoService) {
+    loadingService.createLoader('login', 'signup')
   }
 
   getCurrentUserProfile() {
@@ -38,12 +41,16 @@ export class InsuranceEmployeeService {
   };
 
   login(body) {
+
     const res$ = this.requestService.sendRequest('POST', 'insurance-employee/login', body);
-    res$.subscribe((res: LoginResponseModel) => {
+
+    const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'login');
+
+    loading$.subscribe((res: LoginResponseModel) => {
       this.insuranceEmployeeInfoService.setUser(res.data.user, true);
       this.insuranceEmployeeInfoService.token = res.data.token;
       localStorage.setItem('token', res.data.token);
     });
-    return res$;
+    return loading$;
   };
 }

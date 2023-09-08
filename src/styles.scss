@@ -4,10 +4,17 @@
 @import "./app/prime-theme/theme";
 @import "primeng/resources/primeng.min.css";
 @import "primeicons/primeicons.css";
+@import "./variables";
 
 @tailwind utilities;
 
 mr-input, mr-password, mr-select, mr-input-number {
   display: block;
   width: 100%;
+}
+
+.content {
+  padding: 1rem 1.6rem;
+  border-radius: 0.4rem;
+  background: var(--white);
 }

@@ -4,6 +4,8 @@ import {InsuranceEmployeeService} from "../../shared/services/insurance-employee
 import {
   InsuranceEmployeeInfoService
 } from "../../shared/services/insurance-employee-info/insurance-employee-info.service";
+import {Router} from "@angular/router";
+import {LoadingService} from "../../shared/services/loading/loading.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,10 @@ import {
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private insuranceEmployeeService: InsuranceEmployeeService,
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              public loadingService: LoadingService,
+              private insuranceEmployeeService: InsuranceEmployeeService,
               private insuranceEmployeeInfoService: InsuranceEmployeeInfoService) {
   }
 
@@ -34,8 +39,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.insuranceEmployeeService.login(this.form.value).subscribe(() => {
-      console.log(this.insuranceEmployeeInfoService.user)
-      console.log(this.insuranceEmployeeInfoService.token);
+      this.router.navigateByUrl('/index');
     });
   }
 

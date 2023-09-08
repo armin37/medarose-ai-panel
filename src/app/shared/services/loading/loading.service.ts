@@ -1,32 +1,50 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, defer, Observable, of} from "rxjs";
 import {concatMap, finalize, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService {
-  private loadingSubject = new BehaviorSubject<boolean>(false);
-
-  loading$: Observable<boolean> = this.loadingSubject.asObservable();
+  private loadingIndicators: { [key: string]: BehaviorSubject<boolean> } = {};
 
   constructor() {
   }
 
-  showLoaderUntilComplete<T>(obs$: Observable<T>): Observable<T> {
-    return of(null)
-      .pipe(
-        tap(() => this.loadingOn()),
+  createLoader(...identifier: string[]) {
+    debugger;
+    identifier.forEach(key => {
+      this.loadingIndicators[key] = new BehaviorSubject<boolean>(false);
+    })
+  }
+
+  showLoaderUntilComplete<T>(obs$: Observable<T>, identifier: string): Observable<T> {
+    const load$ = this.loadingIndicators[identifier]
+
+    return defer(() => {
+      this.loadingOn(identifier)
+
+      return load$.pipe(
         concatMap(() => obs$),
-        finalize(() => this.loadingOff())
+        finalize(() => this.loadingOff(identifier))
       )
+    })
   }
 
-  loadingOn() {
-    this.loadingSubject.next(true);
+  loadingOn(identifier: string) {
+    if (this.loadingIndicators[identifier]) {
+      this.loadingIndicators[identifier].next(true);
+      this.loadingIndicators[identifier].next(true);
+    }
   }
 
-  loadingOff() {
-    this.loadingSubject.next(false);
+  loadingOff(identifier: string) {
+    if (this.loadingIndicators[identifier]) {
+      this.loadingIndicators[identifier].next(false);
+    }
+  }
+
+  getLoader(identifier: string): Observable<boolean> {
+    return this.loadingIndicators[identifier].asObservable();
   }
 }

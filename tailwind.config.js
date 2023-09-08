@@ -7,17 +7,17 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      primary: '#7951a1',
-      primary_shade: '#0b2d4d',
-      secondary: '#79a159',
-      success: '#57bc57',
-      info: '#35a4cc',
-      warning: '#e89c54',
-      help: '#9f9cb1',
-      danger: '#d45472',
-      black: colors.black,
-      white: colors.white,
-      neutral: colors.gray
+      primary: 'var(--primary)',
+      primary_shade: 'var(--primary_shade)',
+      secondary: 'var(--secondary)',
+      success: 'var(--success)',
+      info: 'var(--info)',
+      warning: 'var(--warning)',
+      help: 'var(--help)',
+      danger: 'var(--danger)',
+      black: 'var(--black)',
+      white: 'var(--white)',
+      neutral: 'var(--neutral)'
     },
   },
   plugins: [],

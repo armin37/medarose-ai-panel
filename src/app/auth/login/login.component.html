@@ -6,7 +6,7 @@
           ورود به حساب کاربری
         </h5>
 
-        <form [formGroup]="form">
+        <form [formGroup]="form" (submit)="login()">
           <div class="!mb-4">
             <mr-input [control]="asFormControl(form.controls['phone'])"
                       placeholder="شماره همراه"
@@ -20,8 +20,8 @@
           </div>
 
           <div class="flex justify-between !mt-8">
-            <mr-button (clicked)="login()" label="ورود"></mr-button>
-            <mr-button class="text-xs" label="فراموشی رمز عبور" shape="link"></mr-button>
+            <mr-button [loading]="(loadingService.getLoader('login') | async)!" type="submit" label="ورود"></mr-button>
+            <mr-button [loading]="(loadingService.getLoader('signup') | async)!" class="text-xs" label="فراموشی رمز عبور" shape="link"></mr-button>
           </div>
         </form>
       </div>

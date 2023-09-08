@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+  <div class="grid grid-cols-2">
+    <div class="!mb-3">
+      <mr-input [control]="asFormControl(form.controls['phone'])"
+                placeholder="شماره همراه(بدون صفر)"
+                direction="ltr"
+                icon="mobile"></mr-input>
+    </div>
+
+    <div class="!mb-3">
+      <mr-input [control]="asFormControl(form.controls['name'])"
+                placeholder="نام و نام خانوادگی"
+                icon="user"></mr-input>
+    </div>
+
+    <div class="!mb-3">
+      <mr-input [control]="asFormControl(form.controls['nationalCode'])"
+                placeholder="کد ملی"
+                icon="qrcode"></mr-input>
+    </div>
+
+    <div class="!mb-3">
+      <mr-input [control]="asFormControl(form.controls['code'])"
+                placeholder="کد اعتبارسنجی"
+                icon="key"></mr-input>
+    </div>
+
+    <div class="flex justify-between !mt-8">
+      <mr-button (clicked)="concurInfo()" label="ارسال"></mr-button>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+  <div class="!mb-4">
+    <mr-input [control]="asFormControl(form.controls['phone'])"
+              placeholder="شماره همراه(بدون صفر)"
+              direction="ltr"
+              icon="mobile"></mr-input>
+  </div>
+
+  <div class="flex justify-between !mt-8">
+    <mr-button (clicked)="enterMobile()" label="ارسال کد"></mr-button>
+  </div>
+</form>
+

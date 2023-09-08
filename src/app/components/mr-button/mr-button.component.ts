@@ -14,7 +14,7 @@ export class MrButtonComponent {
   @Input() icon = '';
   @Input() type: 'submit' | 'button' = 'button';
   @Input() disabled = false;
-  @Input() loading = false;
+  @Input() loading :boolean= false;
   @Input() size: 'sm' | '' | 'lg' = '';
   @Input() color: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger' = 'primary';
   @Input() shape: '' | 'rounded' | 'outlined' | 'text' | 'link' | 'outlined p-button-rounded' = '';
