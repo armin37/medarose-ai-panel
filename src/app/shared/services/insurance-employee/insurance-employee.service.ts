@@ -7,6 +7,7 @@ import {InsuranceEmployeeUserModel} from "../../../auth/model/insuranceEmployeeU
 import {InsuranceEmployeeInfoService} from "../insurance-employee-info/insurance-employee-info.service";
 import {ProfileResponseModel} from "../../../auth/model/profileResponse.model";
 import {LoadingService} from "../loading/loading.service";
+import {searchUsersModel} from "../../../auth/model/SearchUsers.model";
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,18 @@ export class InsuranceEmployeeService {
       this.addUserPhoneTemp = body.phone;
     });
     return loading$;
+  };
+  searchUsers(){
+    const res$ = this.requestService.sendRequest('GET','insurance-employee/user?limit=10&offset=0');
+    res$.subscribe({
+      next: (res: searchUsersModel) => {
+        this.insuranceEmployeeInfoService.setUser(res.isActive,true);
+      }, error: (err) => {
+        this.insuranceEmployeeInfoService.setUser(undefined, true);
+        return err;
+      }
+    });
+    return res$;
   };
 
   addUserVerifyOTP(body) {
