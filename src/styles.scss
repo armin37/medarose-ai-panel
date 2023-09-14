@@ -8,6 +8,10 @@
 
 @tailwind utilities;
 
+html {
+  font-size: 16px;
+}
+
 mr-input, mr-password, mr-select, mr-input-number {
   display: block;
   width: 100%;

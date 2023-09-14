@@ -17,7 +17,7 @@
   --text-color-secondary: #898989;
   --primary-color: #7951a1;
   --primary-color-text: #ffffff;
-  --font-family: Poppins, sans-serif;
+  --font-family: "Iran Sans";
   --surface-0: #ffffff;
   --surface-50: #f1f3f5;
   --surface-100: #e2e6eb;
@@ -108,13 +108,13 @@
 
 
 * {
-  font-family: "Iran Sans";
+  font-family: var(--font-family);
   font-weight: 100;
   box-sizing: border-box
 }
 
 .p-component {
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family);
   font-size: 1rem;
   font-weight: normal
 }
@@ -147,7 +147,7 @@
 
 .p-link {
   font-size: 1rem;
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family);
   border-radius: var(--radius-2)
 }
 
@@ -335,7 +335,7 @@
 }
 
 .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token input {
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family);
   font-size: 1rem;
   color: #6c6c6c;
   padding: 0;
@@ -918,7 +918,7 @@ p-checkbox.ng-dirty.ng-invalid > .p-checkbox > .p-checkbox-box {
 }
 
 .p-chips .p-chips-multiple-container .p-chips-input-token input {
-  font-family: Poppins, sans-serif;
+  font-family: var(--font-family);
   font-size: 1rem;
   color: #6c6c6c;
   padding: 0;
@@ -7505,7 +7505,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 
 .p-terminal .p-terminal-input {
   font-size: 1rem;
-  font-family: Poppins, sans-serif
+  font-family: var(--font-family);
 }
 
 .p-button .p-button-label {

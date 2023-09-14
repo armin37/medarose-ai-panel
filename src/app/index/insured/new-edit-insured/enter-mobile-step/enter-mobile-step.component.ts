@@ -38,7 +38,7 @@ export class EnterMobileStepComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      phone: [this.insuranceEmployeeService.addUserPhoneTemp, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
+      phone: [this.insuranceEmployeeService.addUserPhoneTemp.replace('+98', ''), [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
     })
   }
 

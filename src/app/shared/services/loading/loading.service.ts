@@ -18,16 +18,11 @@ export class LoadingService {
   }
 
   showLoaderUntilComplete<T>(obs$: Observable<T>, identifier: string): Observable<T> {
-    const load$ = this.loadingIndicators[identifier]
+    this.loadingOn(identifier)
 
-    return defer(() => {
-      this.loadingOn(identifier)
-
-      return load$.pipe(
-        concatMap(() => obs$),
-        finalize(() => this.loadingOff(identifier))
-      )
-    })
+    return obs$.pipe(
+      finalize(() => this.loadingOff(identifier))
+    )
   }
 
   loadingOn(identifier: string) {
