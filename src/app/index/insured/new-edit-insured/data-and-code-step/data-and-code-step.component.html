@@ -16,17 +16,21 @@
     <div class="!mb-3">
       <mr-input [control]="asFormControl(form.controls['nationalCode'])"
                 placeholder="کد ملی"
+                direction="ltr"
                 icon="qrcode"></mr-input>
     </div>
 
     <div class="!mb-3">
       <mr-input [control]="asFormControl(form.controls['code'])"
                 placeholder="کد اعتبارسنجی"
+                direction="ltr"
                 icon="key"></mr-input>
     </div>
 
-    <div class="flex justify-between !mt-8">
-      <mr-button (clicked)="concurInfo()" label="ارسال"></mr-button>
+    <div class="flex !mt-8">
+      <mr-button (clicked)="backToPhoneStep()" color="help" label="بازگشت" class="me-2"></mr-button>
+      <mr-button
+                 (clicked)="concurInfo()" label="ارسال"></mr-button>
     </div>
   </div>
 </form>

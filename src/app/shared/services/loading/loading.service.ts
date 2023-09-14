@@ -12,7 +12,6 @@ export class LoadingService {
   }
 
   createLoader(...identifier: string[]) {
-    debugger;
     identifier.forEach(key => {
       this.loadingIndicators[key] = new BehaviorSubject<boolean>(false);
     })
@@ -33,7 +32,6 @@ export class LoadingService {
 
   loadingOn(identifier: string) {
     if (this.loadingIndicators[identifier]) {
-      this.loadingIndicators[identifier].next(true);
       this.loadingIndicators[identifier].next(true);
     }
   }

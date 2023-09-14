@@ -17,6 +17,8 @@ import {InsuranceEmployeeService} from "../../../../shared/services/insurance-em
 import {
   InsuranceEmployeeInfoService
 } from "../../../../shared/services/insurance-employee-info/insurance-employee-info.service";
+import {navAbsoluteURLS} from '../../../_nav';
+import {LoadingService} from "../../../../shared/services/loading/loading.service";
 
 @Component({
   selector: 'app-enter-mobile-step',
@@ -31,12 +33,12 @@ export class EnterMobileStepComponent implements OnInit {
   constructor(private router: Router,
               private fb: FormBuilder,
               private insuranceEmployeeService: InsuranceEmployeeService,
-              private insuranceEmployeeInfoService: InsuranceEmployeeInfoService) {
+              public loadingService: LoadingService) {
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
+      phone: [this.insuranceEmployeeService.addUserPhoneTemp, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
     })
   }
 
@@ -44,8 +46,11 @@ export class EnterMobileStepComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    //TODO
-    this.router.navigateByUrl('/index/insured/new/approve-data')
+    const phone = '+98' + this.form.controls['phone'].value;
+    const res$ = this.insuranceEmployeeService.addUserSendOtp({phone});
+    res$.subscribe(() => {
+      this.router.navigateByUrl(navAbsoluteURLS.INSURED.NEW_EDIT.APPROVE_DATA)
+    })
   }
 
   asFormControl(control: AbstractControl): FormControl {

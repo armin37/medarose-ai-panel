@@ -22,6 +22,11 @@ const routes: Routes = [
         loadComponent: () => import('./insured/new-edit-insured/new-edit-insured.component').then(m => m.NewEditInsuredComponent),
         children: [
           {
+            path: '',
+            redirectTo: 'phone',
+            pathMatch: 'full'
+          },
+          {
             path: 'phone',
             loadComponent: () => import('./insured/new-edit-insured/enter-mobile-step/enter-mobile-step.component').then(m => m.EnterMobileStepComponent),
           },

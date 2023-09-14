@@ -7,7 +7,8 @@
   </div>
 
   <div class="flex justify-between !mt-8">
-    <mr-button (clicked)="enterMobile()" label="ارسال کد"></mr-button>
+    <mr-button [loading]="(loadingService.getLoader('otp') | async)!"
+               (clicked)="enterMobile()" label="ارسال کد"></mr-button>
   </div>
 </form>
 

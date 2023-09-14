@@ -12,11 +12,12 @@ import {LoadingService} from "../loading/loading.service";
   providedIn: 'root'
 })
 export class InsuranceEmployeeService {
+  addUserPhoneTemp = '';
 
   constructor(private requestService: RequestService,
               private loadingService: LoadingService,
               private insuranceEmployeeInfoService: InsuranceEmployeeInfoService) {
-    loadingService.createLoader('login', 'signup')
+    loadingService.createLoader('login', 'signup', 'otp')
   }
 
   getCurrentUserProfile() {
@@ -50,6 +51,30 @@ export class InsuranceEmployeeService {
       this.insuranceEmployeeInfoService.setUser(res.data.user, true);
       this.insuranceEmployeeInfoService.token = res.data.token;
       localStorage.setItem('token', res.data.token);
+    });
+    return loading$;
+  };
+
+  addUserSendOtp(body) {
+
+    const res$ = this.requestService.sendRequest('POST', 'insurance-employee/user/send-otp', body);
+
+    const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'otp');
+
+    loading$.subscribe(() => {
+      this.addUserPhoneTemp = body.phone;
+    });
+    return loading$;
+  };
+
+  addUserVerifyOTP(body) {
+
+    const res$ = this.requestService.sendRequest('POST', 'insurance-employee/user/verify-otp', body);
+
+    const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'otp');
+
+    loading$.subscribe(() => {
+      this.addUserPhoneTemp = '';
     });
     return loading$;
   };
