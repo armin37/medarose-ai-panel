@@ -18,7 +18,6 @@ import {InsuranceEmployeeService} from "../../../shared/services/insurance-emplo
 
 
 export class InsuredListComponent implements OnInit {
-  form: FormGroup;
 
   constructor(private insuranceEmployeeService: InsuranceEmployeeService) {
   }
