@@ -7,7 +7,7 @@ import {InsuranceEmployeeUserModel} from "../../../auth/model/insuranceEmployeeU
 import {InsuranceEmployeeInfoService} from "../insurance-employee-info/insurance-employee-info.service";
 import {ProfileResponseModel} from "../../../auth/model/profileResponse.model";
 import {LoadingService} from "../loading/loading.service";
-import {searchUsersModel} from "../../../auth/model/SearchUsers.model";
+import {searchUsersResponseModel} from "../../../auth/model/searchUsersResponse.model";
 
 @Injectable({
   providedIn: 'root'

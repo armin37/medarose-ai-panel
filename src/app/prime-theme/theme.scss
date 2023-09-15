@@ -3239,11 +3239,11 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-  text-align: left;
+  text-align: start;
   padding: 1rem 1rem;
   border: 2px solid #f5f5f5;
   border-width: 0 0 2px 0;
-  font-weight: 600;
+  font-weight: 400;
   color: #6c6c6c;
   background: #fff;
   transition: box-shadow .3s
@@ -3313,7 +3313,8 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
-  text-align: left;
+  text-align: start;
+  font-size: var(--font-1);
   border: 2px solid #f5f5f5;
   border-width: 0 0 2px 0;
   padding: 1rem 1rem
