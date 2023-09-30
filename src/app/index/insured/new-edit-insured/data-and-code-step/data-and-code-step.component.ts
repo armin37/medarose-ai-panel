@@ -19,6 +19,7 @@ import {
 import {MrPasswordComponent} from "../../../../components/mr-password/mr-password.component";
 import {navAbsoluteURLS} from '../../../_nav';
 import {LoadingService} from "../../../../shared/services/loading/loading.service";
+import {ColorEnum} from "../../../../shared/enums/colorEnum";
 
 @Component({
   selector: 'app-data-and-code-step',
@@ -66,4 +67,6 @@ export class DataAndCodeStepComponent implements OnInit {
   asFormControl(control: AbstractControl): FormControl {
     return control as FormControl;
   }
+
+    protected readonly ColorEnum = ColorEnum;
 }

@@ -28,7 +28,7 @@
     </div>
 
     <div class="flex !mt-8">
-      <mr-button (clicked)="backToPhoneStep()" color="help" label="بازگشت" class="me-2"></mr-button>
+      <mr-button (clicked)="backToPhoneStep()" [color]="ColorEnum.HELP" label="بازگشت" class="me-2"></mr-button>
       <mr-button [loading]="(loadingService.getLoader('otp') | async)!"
                  (clicked)="concurInfo()" label="ارسال"></mr-button>
     </div>

@@ -8,7 +8,9 @@ export const navAbsoluteURLS =
       NEW_EDIT: {
         PHONE: '/index/insured/new/phone',
         APPROVE_DATA: '/index/insured/new/approve-data'
-      }
+      },
+      SURVEYS: '/index/insured/surveys',
+      SURVEY_DETAIL: '/index/insured/surveys/detail',
     },
   }
 

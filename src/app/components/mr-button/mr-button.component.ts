@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ButtonModule} from 'primeng/button';
+import {ColorEnum} from "../../shared/enums/colorEnum";
 
 @Component({
   selector: 'mr-button',
@@ -14,9 +15,9 @@ export class MrButtonComponent {
   @Input() icon = '';
   @Input() type: 'submit' | 'button' = 'button';
   @Input() disabled = false;
-  @Input() loading :boolean= false;
+  @Input() loading: boolean = false;
   @Input() size: 'sm' | '' | 'lg' = '';
-  @Input() color: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger' = 'primary';
+  @Input() color: ColorEnum = ColorEnum.PRIMARY;
   @Input() shape: '' | 'rounded' | 'outlined' | 'text' | 'link' | 'outlined p-button-rounded' = '';
   @Output() clicked = new EventEmitter<any>();
 

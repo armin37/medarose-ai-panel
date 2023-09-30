@@ -1,9 +1,17 @@
 import {InsuredUserModel} from "./insuredUser.model";
 
-export interface searchUsersResponseModel {
-  hasError: boolean,
+export class SearchUsersResponseModel {
+  hasError: boolean;
   data: {
-    count: number,
+    count: number;
     data: InsuredUserModel[]
+  }
+
+  constructor(data: SearchUsersResponseModel) {
+    this.hasError = data.hasError;
+    this.data = {
+      count: data.data.count,
+      data: data.data.data.map(userData => new InsuredUserModel(userData))
+    };
   }
 }

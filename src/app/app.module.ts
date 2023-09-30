@@ -10,6 +10,8 @@ import {DefaultHeaderComponent} from "./index/default-header/default-header.comp
 import {NgScrollbarModule} from "ngx-scrollbar";
 import {IconModule, IconSetService} from "@coreui/icons-angular";
 import {HttpClientModule} from "@angular/common/http";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -25,10 +27,12 @@ import {HttpClientModule} from "@angular/common/http";
     GridModule,
     NgScrollbarModule,
     IconModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule
   ],
   providers: [
-    IconSetService
+    IconSetService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

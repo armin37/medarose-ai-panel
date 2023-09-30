@@ -1,0 +1,47 @@
+<div class="card">
+  <p-table
+    [value]="data"
+    [lazy]="true"
+    (onLazyLoad)="loadSurveys($event)"
+    responsiveLayout="stack"
+    [breakpoint]="'1359px'"
+    dataKey="id"
+    [paginator]="true"
+    [rows]="10"
+    [totalRecords]="totalRecords"
+    [loading]="dataLoading"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">ردیف</th>
+        <th class="text-center">شناسه</th>
+        <th class="text-center">تاریخ ثبت</th>
+        <th class="text-center">
+          <div class="flex items-center justify-center">
+            <span>کامل شده</span>
+            <p-columnFilter class="ms-1" type="boolean" field="isComplete"
+                            [showMatchModes]="false" [showClearButton]="false"
+                            matchMode="equals"
+                            [showMenu]="false"></p-columnFilter>
+          </div>
+        </th>
+        <th class="text-center">عملیات</th>
+      </tr>
+
+    </ng-template>
+    <ng-template pTemplate="body" let-sur let-index="rowIndex">
+      <tr>
+        <td class="text-center">{{index + 1}}</td>
+        <td class="text-center">{{ sur.id }}</td>
+        <td class="text-center">{{ sur.createDateStr }}</td>
+        <td class="text-center">
+          <p-checkbox [(ngModel)]="sur.isComplete" [disabled]="true" [binary]="true" inputId="binary"></p-checkbox>
+        </td>
+        <td class="text-center">
+          <mr-button (click)="toSurveyDetail(sur.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS"
+                     label="جزییات"></mr-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

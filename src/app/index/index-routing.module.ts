@@ -40,6 +40,14 @@ const routes: Routes = [
         path: 'insured/edit/:id',
         loadComponent: () => import('./insured/new-edit-insured/new-edit-insured.component').then(m => m.NewEditInsuredComponent)
       },
+      {
+        path: 'insured/surveys/:userId',
+        loadComponent: () => import('./insured/user-surveys/user-surveys.component').then(m => m.UserSurveysComponent)
+      },
+      {
+        path: 'insured/surveys/detail/:surveyId',
+        loadComponent: () => import('./insured/survey-detail/survey-detail.component').then(m => m.SurveyDetailComponent)
+      }
     ]
   }
 ];

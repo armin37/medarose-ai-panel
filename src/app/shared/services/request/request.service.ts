@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {InsuranceEmployeeInfoService} from "../insurance-employee-info/insurance-employee-info.service";
+import {ToastService} from "../toast/toast.service";
+import {ColorEnum} from "../../enums/colorEnum";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,8 @@ export class RequestService {
   ENDPOINT = 'https://apiai.medarose.ir/';
 
   constructor(private httpClient: HttpClient,
-              private insuranceEmployeeInfoService: InsuranceEmployeeInfoService) {
+              private insuranceEmployeeInfoService: InsuranceEmployeeInfoService,
+              private toastService: ToastService) {
     const EP = localStorage.getItem('endpoint');
     if (EP) {
       this.ENDPOINT = EP;
@@ -38,6 +41,7 @@ export class RequestService {
   sendRequest(method = 'POST',
               url = '/',
               body = {},
+              showMessage = false,
               ...args): Observable<any> {
     let headers = this.generateHeader();
     let sendUrl = this.ENDPOINT + url;
@@ -66,14 +70,19 @@ export class RequestService {
       map(res => args.find(arg => arg.fullResponse) ? res : res.body),
       shareReplay()
     );
-    res$.subscribe(
-      res => {
-      },
-      err => {
-        if (err.error?.message) {
-          // this.snackbarService.show(err.error?.message);
+    res$.subscribe({
+      next: (res) => {
+        if (showMessage) {
+          this.toastService.showMessage('موفقیت', 'عملیات با موفقیت انجام شد ', ColorEnum.SUCCESS)
         }
-      });
+      },
+      error: (err) => {
+        if (err.error?.message) {
+          this.toastService.showMessage('خطا', err.error.message, ColorEnum.DANGER)
+        }
+      }
+    })
+
     return res$;
   }
 }

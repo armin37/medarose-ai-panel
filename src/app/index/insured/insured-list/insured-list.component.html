@@ -21,6 +21,24 @@
         <th class="text-center">عملیات</th>
       </tr>
 
+      <tr>
+        <th></th>
+        <th>
+          <p-columnFilter type="text" field="name" [showMatchModes]="false" [showClearButton]="false" [showMenu]="false"></p-columnFilter>
+        </th>
+
+        <th>
+          <p-columnFilter type="text" field="nationalCode" [showMatchModes]="false" [showClearButton]="false" [showMenu]="false" matchMode="contains"></p-columnFilter>
+        </th>
+
+        <th>
+          <p-columnFilter type="text" field="phone" [showMatchModes]="false" [showClearButton]="false" [showMenu]="false" matchMode="contains"></p-columnFilter>
+        </th>
+
+        <th></th>
+        <th style="min-width: 42rem"></th>
+      </tr>
+
 
     </ng-template>
     <ng-template pTemplate="body" let-user let-index="rowIndex">
@@ -29,11 +47,11 @@
         <td>{{ user.name }}</td>
         <td class="text-center"><span class="inline-block ltr">{{ user.nationalCode }}</span></td>
         <td class="text-center"><span class="inline-block ltr">{{ user.phone }}</span></td>
-        <td>{{ user.createDate }}</td>
+        <td>{{ user.createDateStr }}</td>
         <td>
-          <mr-button size="sm" class="me-1" color="success" label="ارسال پرسشنامه"></mr-button>
-          <mr-button size="sm" class="me-1" color="success" label="مشاهده نتایج"></mr-button>
-          <mr-button size="sm" class="me-1" color="success" label="پیشنهاد نرخ پوشش"></mr-button>
+          <mr-button (clicked)="sendSurvey(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="ارسال پرسشنامه"></mr-button>
+          <mr-button (clicked)="toSurveys(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="مشاهده نتایج"></mr-button>
+          <mr-button size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="پیشنهاد نرخ پوشش"></mr-button>
           <mr-button size="sm" class="me-1" label="کاهش ریسک"></mr-button>
           <mr-button size="sm" label="تخصیص به پزشک"></mr-button>
         </td>

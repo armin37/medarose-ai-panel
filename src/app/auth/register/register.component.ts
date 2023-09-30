@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "
 import {InsuranceEmployeeService} from "../../shared/services/insurance-employee/insurance-employee.service";
 import {RegisterResponseModel} from "../model/registerResponse.model";
 import {InsuranceEmployeeUserModel} from "../model/insuranceEmployeeUser.model";
+import {ColorEnum} from "../../shared/enums/colorEnum";
 
 @Component({
   selector: 'app-register',
@@ -38,4 +39,6 @@ export class RegisterComponent implements OnInit {
   asFormControl(control: AbstractControl): FormControl {
     return control as FormControl;
   }
+
+    protected readonly ColorEnum = ColorEnum;
 }

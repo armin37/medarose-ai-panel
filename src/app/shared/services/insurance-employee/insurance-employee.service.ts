@@ -7,7 +7,7 @@ import {InsuranceEmployeeUserModel} from "../../../auth/model/insuranceEmployeeU
 import {InsuranceEmployeeInfoService} from "../insurance-employee-info/insurance-employee-info.service";
 import {ProfileResponseModel} from "../../../auth/model/profileResponse.model";
 import {LoadingService} from "../loading/loading.service";
-import {searchUsersResponseModel} from "../../../auth/model/searchUsersResponse.model";
+import {SearchUsersResponseModel} from "../../../auth/model/searchUsersResponse.model";
 
 @Injectable({
   providedIn: 'root'
@@ -78,10 +78,5 @@ export class InsuranceEmployeeService {
       this.addUserPhoneTemp = '';
     });
     return loading$;
-  };
-
-  searchUsers(){
-    const res$ = this.requestService.sendRequest('GET','insurance-employee/user?limit=10&offset=0');
-    return res$;
   };
 }

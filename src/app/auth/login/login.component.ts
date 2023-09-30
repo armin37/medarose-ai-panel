@@ -6,6 +6,7 @@ import {
 } from "../../shared/services/insurance-employee-info/insurance-employee-info.service";
 import {Router} from "@angular/router";
 import {LoadingService} from "../../shared/services/loading/loading.service";
+import {ColorEnum} from "../../shared/enums/colorEnum";
 
 @Component({
   selector: 'app-login',
@@ -47,4 +48,5 @@ export class LoginComponent implements OnInit {
     return control as FormControl;
   }
 
+  protected readonly ColorEnum = ColorEnum;
 }
