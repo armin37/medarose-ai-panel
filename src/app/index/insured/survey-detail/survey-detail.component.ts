@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ActivatedRoute, Router} from "@angular/router";
 import {MrKnobComponent} from "../../../components/mr-knob/mr-knob.component";
 import {MrProgressComponent} from "../../../components/mr-progress/mr-progress.component";
+import {InsuredService} from "../../../shared/services/insured/insured.service";
+import {SurveyDetailResponseModel} from "../../../auth/model/surveyDetailResponse.model"
 
 @Component({
   selector: 'app-survey-detail',
@@ -10,6 +13,27 @@ import {MrProgressComponent} from "../../../components/mr-progress/mr-progress.c
   templateUrl: './survey-detail.component.html',
   styleUrls: ['./survey-detail.component.scss']
 })
-export class SurveyDetailComponent {
+export class SurveyDetailComponent implements OnInit {
+  surveyId;
+  survey: SurveyDetailResponseModel;
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private insuredService: InsuredService){
+
+  }
+
+  ngOnInit(): void {
+    this.surveyId= this.activatedRoute.snapshot.paramMap.get('surveyId');
+    this.loadSurvey();
+  }
+
+  loadSurvey(){
+    this.insuredService.loadSurvey(this.surveyId).subscribe(
+      (res: SurveyDetailResponseModel) => {
+        this.survey= res;
+    })
+  
+  }
+
 
 }

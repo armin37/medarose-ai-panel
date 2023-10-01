@@ -20,8 +20,14 @@ export class InsuredService {
     const res$ = this.requestService.sendRequest('GET', `insurance-employee/user-survey?${params}`);
     return res$;
   }
+  
   sendSurvey(userId) {
     const res$ = this.requestService.sendRequest('POST', `insurance-employee/user/${userId}/send-link`, {}, true);
+    return res$;
+  }
+
+  loadSurvey(surveyId) {
+    const res$ = this.requestService.sendRequest('GET', `insurance-employee/user-survey/${surveyId}`);
     return res$;
   }
 }
