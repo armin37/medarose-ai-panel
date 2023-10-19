@@ -22,7 +22,6 @@ export class MrSelectComponent {
   @Output() changed = new EventEmitter();
 
   valueChanged() {
-    console.log(this.control.value);
     this.changed.emit(this.control.value);
   }
 }

@@ -47,6 +47,10 @@ const routes: Routes = [
       {
         path: 'insured/surveys/detail/:surveyId',
         loadComponent: () => import('./insured/survey-detail/survey-detail.component').then(m => m.SurveyDetailComponent)
+      },
+      {
+        path: 'insured/rate/:userId',
+        loadComponent: () => import('./insured/coverage-rate/coverage-rate.component').then(m => m.CoverageRateComponent)
       }
     ]
   }

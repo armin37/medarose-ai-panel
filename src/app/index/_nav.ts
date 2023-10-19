@@ -11,6 +11,7 @@ export const navAbsoluteURLS =
       },
       SURVEYS: '/index/insured/surveys',
       SURVEY_DETAIL: '/index/insured/surveys/detail',
+      COVERAGE_RATE: '/index/insured/rate',
     },
   }
 

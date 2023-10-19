@@ -1,15 +1,15 @@
 import * as moment from 'jalali-moment';
 
 export class SurveyModel {
-  id: number;
-  isComplete: boolean;
-  userId: number;
-  surveyId: number;
-  createDate: Date;
-  updateDate: Date;
-  updateDateStr: string;
+  id?: number;
+  isComplete?: boolean;
+  userId?: number;
+  surveyId?: number;
+  createDate?: Date;
+  updateDate?: Date;
+  updateDateStr?: string;
   createDateStr: string;
-  result: ResultIllnesses;
+  result?: ResultIllnesses;
 
 
   constructor(data: SurveyModel) {

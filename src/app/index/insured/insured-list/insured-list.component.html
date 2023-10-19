@@ -51,7 +51,7 @@
         <td>
           <mr-button (clicked)="sendSurvey(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="ارسال پرسشنامه"></mr-button>
           <mr-button (clicked)="toSurveys(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="مشاهده نتایج"></mr-button>
-          <mr-button size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="پیشنهاد نرخ پوشش"></mr-button>
+          <mr-button (clicked)="toCoverageRate(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="پیشنهاد نرخ پوشش"></mr-button>
           <mr-button size="sm" class="me-1" label="کاهش ریسک"></mr-button>
           <mr-button size="sm" label="تخصیص به پزشک"></mr-button>
         </td>

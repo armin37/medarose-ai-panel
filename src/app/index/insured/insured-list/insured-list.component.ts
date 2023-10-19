@@ -80,4 +80,8 @@ export class InsuredListComponent implements OnInit {
   toSurveys(userId) {
     this.router.navigateByUrl(`${navAbsoluteURLS.INSURED.SURVEYS}/${userId}`);
   }
+
+  toCoverageRate(userId) {
+    this.router.navigateByUrl(`${navAbsoluteURLS.INSURED.COVERAGE_RATE}/${userId}`);
+  }
 }

@@ -9,6 +9,7 @@ export class InsuredService {
 
   constructor(private requestService: RequestService,
               private loadingService: LoadingService) {
+    loadingService.createLoader('survey')
   }
 
   searchUsers(params) {
@@ -20,7 +21,7 @@ export class InsuredService {
     const res$ = this.requestService.sendRequest('GET', `insurance-employee/user-survey?${params}`);
     return res$;
   }
-  
+
   sendSurvey(userId) {
     const res$ = this.requestService.sendRequest('POST', `insurance-employee/user/${userId}/send-link`, {}, true);
     return res$;
@@ -28,6 +29,9 @@ export class InsuredService {
 
   loadSurvey(surveyId) {
     const res$ = this.requestService.sendRequest('GET', `insurance-employee/user-survey/${surveyId}`);
-    return res$;
+
+    const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'survey');
+
+    return loading$;
   }
 }

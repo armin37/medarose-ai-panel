@@ -26,3 +26,12 @@ mr-input, mr-password, mr-select, mr-input-number {
   border-radius: 0.4rem;
   background: var(--white);
 }
+
+mr-widget {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+}

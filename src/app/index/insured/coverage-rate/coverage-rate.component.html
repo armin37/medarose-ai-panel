@@ -1,0 +1,116 @@
+<div class="grid grid-cols-12 gap-3">
+  <div class="col-span-12 lg:col-span-3">
+    <div class="bg-white !mb-4 !py-6 !px-4">
+      <label class="!mb-2">
+        انتخاب تست:
+      </label>
+
+      <mr-select (changed)="surveySelect($event)" [options]="allSurveys" optionValue="id"
+                 optionLabel="createDateStr"></mr-select>
+
+      <mr-widget [loading]="loadingService.getLoader('survey')">
+        <survey-detail *ngIf="this.selectedSurvey" [survey]="this.selectedSurvey" [showGauge]="false"></survey-detail>
+      </mr-widget>
+    </div>
+
+    <div class="bg-white !py-6 !px-4 !mb-4">
+      <div class="text-center !mb-6 text-xl font-medium text-dark-2">آرمین مومنی</div>
+      <div>
+        <div class="flex items-center">
+        </div>
+        <div class="flex items-center !mb-3">
+          <span class="me-2 inline-block font-medium">شماره ملی: </span>
+          <span>2190102790</span>
+        </div>
+
+        <div class="flex items-center !mb-3">
+          <span class="me-2 inline-block font-medium">سرمایه فوت سال اول: </span>
+          <span>2190102790</span>
+        </div>
+
+        <div class="flex items-center !mb-3">
+          <span class="me-2 inline-block font-medium">ضریب افزایش سالانه: </span>
+          <span>2190102790</span>
+        </div>
+
+        <div class="flex items-center mb-3">
+          <span class="me-2 inline-block font-medium">سرمایه فوت ناشی از حادثه: </span>
+          <span>2190102790</span>
+        </div>
+
+        <div class="flex items-center mb-3">
+          <span class="me-2 inline-block font-medium">میزان پوشش ناشی از ابتلا به بیماری: </span>
+          <span>2190102790</span>
+        </div>
+
+        <div class="flex items-center mb-3">
+          <span class="me-2 inline-block font-medium">مدت قرارداد: </span>
+          <span>2190102790</span>
+        </div>
+
+        <div class="flex items-center mb-3">
+          <span class="me-2 inline-block font-medium">موقعیت: </span>
+          <span>2190102790</span>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="col-span-12 lg:col-span-9">
+
+    <div *ngIf="!selectedSurveyId">
+      <p-messages [(value)]="selectTestMessage" [enableService]="false" [closable]="false"></p-messages>
+    </div>
+
+    <div *ngIf="selectedSurveyId" class="grid grid-cols-2 gap-3">
+      <div class="col-span-1 bg-white rounded lg:col-span-1 !py-3">
+        <mr-widget [loading]="loadingService.getLoader('survey')">
+          <div class="flex items-center justify-center !mb-3">
+            <i class="pi pi-chart-pie text-xl me-2"></i>
+            <span>نمودار ریسک ناشی از فوت بر اثر بیماری</span>
+          </div>
+          <div class="text-center !mt-4">
+            <mr-knob [value]="47"></mr-knob>
+          </div>
+        </mr-widget>
+      </div>
+
+      <div class="col-span-1 bg-white rounded lg:col-span-1 !py-3">
+        <mr-widget [loading]="loadingService.getLoader('survey')">
+          <div class="flex items-center justify-center !mb-3">
+            <i class="pi pi-chart-pie text-xl me-2"></i>
+            <span>نمودار ریسک ناشی از بیماری</span>
+          </div>
+          <div class="text-center !mt-4">
+            <mr-knob [value]="25"></mr-knob>
+          </div>
+        </mr-widget>
+      </div>
+
+      <div class="col-span-2 bg-white !rounded !mb-4 !p-4">
+        <mr-widget [loading]="loadingService.getLoader('survey')">
+          <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+
+          <div class="mb-2 bg-light-3 !py-3 !px-4 !rounded">
+            <div>شسیش سیخشه یتخشهس یتخش یهتخشهای ظهعازهظع از</div>
+          </div>
+
+          <div class="bg-light-3 !py-3 !px-4 rounded">
+            <div>شسیش سیخشه یتخشهس شهسعیا شهای سهاب یبهالیهال یسعابسهعاییسها بسهعبا سیهعا بیسهعبا یسهع بسیبهع سیهع
+              باسیخه
+              بسخهل بلهعال بیخه
+            </div>
+          </div>
+        </mr-widget>
+      </div>
+
+      <div class="col-span-2 bg-white !rounded !p-4">
+        <mr-widget [loading]="loadingService.getLoader('survey')">
+          <p-messages [(value)]="messages2" [enableService]="false" [closable]="false"></p-messages>
+        </mr-widget>
+      </div>
+    </div>
+  </div>
+</div>

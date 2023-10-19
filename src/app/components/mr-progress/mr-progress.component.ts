@@ -10,5 +10,5 @@ import {ProgressBarModule} from 'primeng/progressbar';
   styleUrls: ['./mr-progress.component.scss']
 })
 export class MrProgressComponent {
-  @Input({required: true}) value: number;
+  @Input({required: true}) value: string | null;
 }

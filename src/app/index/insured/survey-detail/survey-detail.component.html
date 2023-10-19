@@ -1,5 +1,5 @@
 <div style="max-width: 800px; margin: auto">
-  <div class="text-center mb-8 bg-white rounded-lg !py-6">
+  <div *ngIf="showGauge" class="text-center mb-8 bg-white rounded-lg !py-6">
     <div class="flex items-center justify-center !mb-3">
       <i class="pi pi-chart-pie text-xl me-2"></i>
       <span>وضعیت کلی ریسک بیماری ها</span>
@@ -10,54 +10,54 @@
   <div class="bg-white rounded-lg mb-8 !py-6">
     <div class="illness">
       <p>سرطان ریه</p>
-      <mr-progress [value]="survey.data.userSurvey.result.LungCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.LungCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان معده</p>
-      <mr-progress [value]="survey.data.userSurvey.result.GastricCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.GastricCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان روده بزرگ</p>
-      <mr-progress [value]="survey.data.userSurvey.result.ColonCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.ColonCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان پانکراس</p>
-      <mr-progress [value]="survey.data.userSurvey.result.PancreaticCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.PancreaticCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان دهانه رحم</p>
-      <mr-progress [value]="survey.data.userSurvey.result.CervicalCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.CervicalCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان تخمدان</p>
-      <mr-progress [value]="survey.data.userSurvey.result.OvarianCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.OvarianCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان سینه</p>
-      <mr-progress [value]="survey.data.userSurvey.result.BreastCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.BreastCancer | number:'1.0-0'"></mr-progress>
     </div>
 
     <div class="illness">
       <p>سرطان پروستات</p>
-      <mr-progress [value]="survey.data.userSurvey.result.ProstateCancer"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.ProstateCancer | number:'1.0-0'"></mr-progress>
     </div>
 
 
     <div class="illness">
       <p>سکته مغزی</p>
-      <mr-progress [value]="survey.data.userSurvey.result.BrainStroke"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.BrainStroke | number:'1.0-0'"></mr-progress>
     </div>
 
 
     <div class="illness">
       <p>سکته قلبی</p>
-      <mr-progress [value]="survey.data.userSurvey.result.HeartStroke"></mr-progress>
+      <mr-progress [value]="survey.data.userSurvey.result?.HeartStroke | number:'1.0-0'"></mr-progress>
     </div>
 
   </div>
