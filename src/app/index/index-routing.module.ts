@@ -51,6 +51,10 @@ const routes: Routes = [
       {
         path: 'insured/rate/:userId',
         loadComponent: () => import('./insured/coverage-rate/coverage-rate.component').then(m => m.CoverageRateComponent)
+      },
+      {
+        path: 'setting',
+        loadComponent: () => import('./setting/setting.component').then(m => m.SettingComponent)
       }
     ]
   }
