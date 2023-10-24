@@ -7,11 +7,12 @@ import {UsersSurveysResponseModel} from "../../../auth/model/usersSurveysRespons
 import {SurveyModel} from "../../../auth/model/survey.model";
 import {InsuredService} from "../../../shared/services/insured/insured.service";
 import {ActivatedRoute} from "@angular/router";
-import {NgIf} from "@angular/common";
+import {DecimalPipe, NgIf} from "@angular/common";
 import {SurveyDetailResponseModel} from "../../../auth/model/surveyDetailResponse.model";
 import {MrWidgetComponent} from "../../../components/mr-widget/mr-widget.component";
 import {LoadingService} from "../../../shared/services/loading/loading.service";
 import {SurveyDetailComponent} from "../survey-detail/survey-detail.component";
+import {UserAllDataModel} from "../../../auth/model/userResponseModel";
 
 @Component({
   selector: 'app-coverage-rate',
@@ -24,12 +25,14 @@ import {SurveyDetailComponent} from "../survey-detail/survey-detail.component";
     MrSelectComponent,
     NgIf,
     MrWidgetComponent,
-    SurveyDetailComponent
+    SurveyDetailComponent,
+    DecimalPipe
   ]
 })
 export class CoverageRateComponent implements OnInit {
   userId;
-  selectedSurvey: SurveyDetailResponseModel | undefined;
+  user: UserAllDataModel;
+  selectedSurvey: SurveyDetailResponseModel;
   selectedSurveyId: number;
   allSurveys: SurveyModel[];
   surveyDetailLoading = false;
@@ -44,6 +47,7 @@ export class CoverageRateComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
+    this.loadUserData();
     this.loadSurveys();
     this.messages = [{
       icon: ' ',
@@ -91,6 +95,13 @@ export class CoverageRateComponent implements OnInit {
       })
   }
 
+  loadUserData() {
+    this.insuredService.loadUser(this.userId).subscribe((user: UserAllDataModel) => {
+      this.user = user;
+      console.log(this.user)
+    })
+  }
+
   surveySelect(surveyId: number) {
     this.selectedSurvey = undefined;
     this.selectedSurveyId = surveyId;
@@ -98,4 +109,5 @@ export class CoverageRateComponent implements OnInit {
       this.loadSurveyDetail();
   }
 
+  protected readonly parseInt = parseInt;
 }

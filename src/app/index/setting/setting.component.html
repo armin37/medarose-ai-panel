@@ -1,30 +1,256 @@
+<mr-widget [loading]="loadingService.getLoader('setting')">
+  <div *ngIf="coverageForm" [formGroup]="coverageForm" class="grid grid-cols-12 gap-2">
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div formGroupName="insurancePremium" class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
 
-<div class="grid grid-cols-6 ">
-    <div class="col-span-6 lg:col-span-3">
-        <div class="bg-white !mb-4 !py-6 !px-4   ">
-            <h3> حق بیمه</h3>
-            <label class="!ml-2">
-                حداقل :
-            </label>
-            <mr-input class="col-span-6 lg:col-span-3 mn">0</mr-input>
-            <label class="!ml-4">
-                حداکثر :
-            </label>
-            <mr-input class="col-span-6 lg:col-span-3 mn">0</mr-input>
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('insurancePremium.min'))"
+                           placeholder="حداقل"></mr-input-number>
         </div>
-        <div class="bg-white !mb-4 !py-6 !px-4 ">
-            <h3> مدت قرارداد </h3>
-            <label class="!ml-4">
-                حداقل :
-            </label>
-            <mr-input class="col-span-6 lg:col-span-3 mn">0</mr-input>
-            <label class="!ml-4">
-                حداکثر :
-            </label>
-            <mr-input class="col-span-6 lg:col-span-3 mn">0</mr-input>
-            
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('insurancePremium.max'))"
+                           placeholder="حداکثر"></mr-input-number>
         </div>
+      </div>
     </div>
-</div>
 
-  
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('insurancePremiumIncreaseRate.min'))"
+                           placeholder="حداقل"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('insurancePremiumIncreaseRate.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('contractDuration.min'))"
+                           placeholder="حداقل"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('contractDuration.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('deathBenefit.min'))"
+                           placeholder="حداقل"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('deathBenefit.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('deathBenefitRatio.min'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('deathBenefitRatio.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('deathBenefitIncreaseRate.min'))"
+                           placeholder="حداقل"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('deathBenefitIncreaseRate.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('accidentalDeathRatio.min'))"
+                           placeholder="حداقل"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('accidentalDeathRatio.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="col-span-2"> حق بیمه</h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداقل :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('diseaseCoverageRatio.min'))"
+                           placeholder="حداقل"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="!mb-1">
+            حداکثر :
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('diseaseCoverageRatio.max'))"
+                           placeholder="حداکثر"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-4 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="text-success col-span-2">
+          ریسک پایین:
+        </h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="grid-cols-2 !mb-1">
+            از:
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('riskLevelsLow.from'))"
+                           placeholder="از"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="grid-cols-2 !mb-1">
+            تا:
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('riskLevelsLow.to'))"
+                           placeholder="تا"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-4 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="text-warning col-span-2">
+          ریسک متوسط:
+        </h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="grid-cols-2 !mb-1">
+            از:
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('riskLevelsMedium.from'))"
+                           placeholder="از"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="grid-cols-2 !mb-1">
+            تا:
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('riskLevelsMedium.to'))"
+                           placeholder="تا"></mr-input-number>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 lg:col-span-4 bg-white rounded">
+      <div class="grid grid-cols-2 gap-2 !mb-3 !p-4">
+        <h5 class="text-danger col-span-2">
+          ریسک بالا:
+        </h5>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="grid-cols-2 !mb-1">
+            از:
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('riskLevelsHigh.from'))"
+                           placeholder="از"></mr-input-number>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1">
+          <label class="grid-cols-2 !mb-1">
+            تا:
+          </label>
+          <mr-input-number [control]="asFormControl(coverageForm?.get('riskLevelsHigh.to'))"
+                           placeholder="تا"></mr-input-number>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex !mt-8">
+    <mr-button [loading]="(loadingService.getLoader('setting') | async)!"
+               (clicked)="saveData()" label="ذخیره" size="lg" class="!mb-5"></mr-button>
+  </div>
+</mr-widget>

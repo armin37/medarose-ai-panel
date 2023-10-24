@@ -9,51 +9,57 @@
                  optionLabel="createDateStr"></mr-select>
 
       <mr-widget [loading]="loadingService.getLoader('survey')">
-        <survey-detail *ngIf="this.selectedSurvey" [survey]="this.selectedSurvey" [showGauge]="false"></survey-detail>
+        <survey-detail *ngIf="selectedSurvey" [survey]="selectedSurvey" [showGauge]="false"></survey-detail>
       </mr-widget>
     </div>
 
     <div class="bg-white !py-6 !px-4 !mb-4">
       <div class="text-center !mb-6 text-xl font-medium text-dark-2">آرمین مومنی</div>
-      <div>
-        <div class="flex items-center">
-        </div>
-        <div class="flex items-center !mb-3">
-          <span class="me-2 inline-block font-medium">شماره ملی: </span>
-          <span>2190102790</span>
-        </div>
+      <mr-widget [loading]="loadingService.getLoader('user')">
+        <div>
+          <div class="flex items-center">
+          </div>
+          <div class="flex items-center !mb-3">
+            <span class="me-2 inline-block font-medium">شماره ملی: </span>
+            <span>{{user?.user?.nationalCode}}</span>
+          </div>
 
-        <div class="flex items-center !mb-3">
-          <span class="me-2 inline-block font-medium">سرمایه فوت سال اول: </span>
-          <span>2190102790</span>
-        </div>
+          <div class="flex items-center !mb-3">
+            <span class="me-2 inline-block font-medium">حق بیمه: </span>
+            <span>{{user?.contract.insurancePremium}} ریال </span>
+          </div>
 
-        <div class="flex items-center !mb-3">
-          <span class="me-2 inline-block font-medium">ضریب افزایش سالانه: </span>
-          <span>2190102790</span>
-        </div>
+          <div class="flex items-center !mb-3">
+            <span class="me-2 inline-block font-medium">نسبت سرمایه فوت سال اول به حق بیمه: </span>
+            <span>{{user?.contract.deathBenefitRatio}}</span>
+          </div>
 
-        <div class="flex items-center mb-3">
-          <span class="me-2 inline-block font-medium">سرمایه فوت ناشی از حادثه: </span>
-          <span>2190102790</span>
-        </div>
+          <div class="flex items-center !mb-3">
+            <span class="me-2 inline-block font-medium">ضریب افزایش سالانه: </span>
+            <span>{{user?.contract?.deathBenefitIncreaseRate}}</span>
+          </div>
 
-        <div class="flex items-center mb-3">
-          <span class="me-2 inline-block font-medium">میزان پوشش ناشی از ابتلا به بیماری: </span>
-          <span>2190102790</span>
-        </div>
+          <div class="flex items-center mb-3">
+            <span class="me-2 inline-block font-medium">نسبت سرمایه فوت ناشی از حادثه به سرمایه فوت سال اول: </span>
+            <span>{{user?.contract?.accidentalDeathRatio}}</span>
+          </div>
 
-        <div class="flex items-center mb-3">
-          <span class="me-2 inline-block font-medium">مدت قرارداد: </span>
-          <span>2190102790</span>
-        </div>
+          <div class="flex items-center mb-3">
+            <span class="me-2 inline-block font-medium">نسبت پوشش ناشی از ابتلا به بیماری به سرمایه فوت سال اول: </span>
+            <span>{{user?.contract?.diseaseCoverageRatio}}</span>
+          </div>
 
-        <div class="flex items-center mb-3">
-          <span class="me-2 inline-block font-medium">موقعیت: </span>
-          <span>2190102790</span>
-        </div>
-      </div>
+          <div class="flex items-center mb-3">
+            <span class="me-2 inline-block font-medium">مدت قرارداد: </span>
+            <span>{{user?.contract?.contractDuration}}</span>
+          </div>
 
+          <!--          <div class="flex items-center mb-3">-->
+          <!--            <span class="me-2 inline-block font-medium">موقعیت: </span>-->
+          <!--            <span>2190102790</span>-->
+          <!--          </div>-->
+        </div>
+      </mr-widget>
 
     </div>
   </div>
@@ -69,10 +75,10 @@
         <mr-widget [loading]="loadingService.getLoader('survey')">
           <div class="flex items-center justify-center !mb-3">
             <i class="pi pi-chart-pie text-xl me-2"></i>
-            <span>نمودار ریسک ناشی از فوت بر اثر بیماری</span>
+            <span>نمودار ریسک ناشی از مرگ طبیعی</span>
           </div>
           <div class="text-center !mt-4">
-            <mr-knob [value]="47"></mr-knob>
+            <mr-knob [value]="parseInt(selectedSurvey?.data?.risk.naturalDeath | number:'1.0-0')"></mr-knob>
           </div>
         </mr-widget>
       </div>
@@ -84,7 +90,7 @@
             <span>نمودار ریسک ناشی از بیماری</span>
           </div>
           <div class="text-center !mt-4">
-            <mr-knob [value]="25"></mr-knob>
+            <mr-knob [value]="parseInt(selectedSurvey?.data?.risk.disease | number:'1.0-0')"></mr-knob>
           </div>
         </mr-widget>
       </div>

@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     })
 
     this.insuranceEmployeeService.getCurrentUserProfile().subscribe((res) => {
-      console.log(res)
     })
   }
 
