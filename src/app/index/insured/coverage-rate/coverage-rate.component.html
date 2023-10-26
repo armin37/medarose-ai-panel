@@ -6,7 +6,7 @@
       </label>
 
       <mr-select (changed)="surveySelect($event)" [options]="allSurveys" optionValue="id"
-                 optionLabel="createDateStr"></mr-select>
+                 optionLabel="createDateTimeStr"></mr-select>
 
       <mr-widget [loading]="loadingService.getLoader('survey')">
         <survey-detail *ngIf="selectedSurvey" [survey]="selectedSurvey" [showGauge]="false"></survey-detail>
@@ -14,44 +14,41 @@
     </div>
 
     <div class="bg-white !py-6 !px-4 !mb-4">
-      <div class="text-center !mb-6 text-xl font-medium text-dark-2">آرمین مومنی</div>
+      <div class="text-center !mb-6 text-xl font-medium text-dark-2">{{user?.user.name}}</div>
       <mr-widget [loading]="loadingService.getLoader('user')">
         <div>
           <div class="flex items-center">
           </div>
           <div class="flex items-center !mb-3">
-            <span class="me-2 inline-block font-medium">شماره ملی: </span>
-            <span>{{user?.user?.nationalCode}}</span>
+            <span class="me-2 inline-block font-medium"> شماره ملی: <span>{{user?.user?.nationalCode}}</span></span>
           </div>
 
           <div class="flex items-center !mb-3">
-            <span class="me-2 inline-block font-medium">حق بیمه: </span>
-            <span>{{user?.contract.insurancePremium}} ریال </span>
+            <span class="me-2 inline-block font-medium"> حق بیمه: <span>{{user?.contract.insurancePremium}} ریال </span></span>
           </div>
 
           <div class="flex items-center !mb-3">
-            <span class="me-2 inline-block font-medium">نسبت سرمایه فوت سال اول به حق بیمه: </span>
-            <span>{{user?.contract.deathBenefitRatio}}</span>
+            <span
+              class="me-2 inline-block font-medium"> نسبت سرمایه فوت سال اول به حق بیمه: <span>{{user?.contract.deathBenefitRatio}}</span></span>
           </div>
 
           <div class="flex items-center !mb-3">
-            <span class="me-2 inline-block font-medium">ضریب افزایش سالانه: </span>
-            <span>{{user?.contract?.deathBenefitIncreaseRate}}</span>
+            <span
+              class="me-2 inline-block font-medium"> ضریب افزایش سالانه: <span>{{user?.contract?.deathBenefitIncreaseRate}}</span></span>
           </div>
 
           <div class="flex items-center mb-3">
-            <span class="me-2 inline-block font-medium">نسبت سرمایه فوت ناشی از حادثه به سرمایه فوت سال اول: </span>
-            <span>{{user?.contract?.accidentalDeathRatio}}</span>
+            <span
+              class="me-2 inline-block font-medium"> نسبت سرمایه فوت ناشی از حادثه به سرمایه فوت سال اول: <span>{{user?.contract?.accidentalDeathRatio}}</span></span>
           </div>
 
           <div class="flex items-center mb-3">
-            <span class="me-2 inline-block font-medium">نسبت پوشش ناشی از ابتلا به بیماری به سرمایه فوت سال اول: </span>
-            <span>{{user?.contract?.diseaseCoverageRatio}}</span>
+            <span
+              class="me-2 inline-block font-medium"> نسبت پوشش ناشی از ابتلا به بیماری به سرمایه فوت سال اول:  <span>{{user?.contract?.diseaseCoverageRatio}}</span></span>
           </div>
 
           <div class="flex items-center mb-3">
-            <span class="me-2 inline-block font-medium">مدت قرارداد: </span>
-            <span>{{user?.contract?.contractDuration}}</span>
+            <span class="me-2 inline-block font-medium"> مدت قرارداد: <span>{{user?.contract?.contractDuration}}</span></span>
           </div>
 
           <!--          <div class="flex items-center mb-3">-->
@@ -78,7 +75,8 @@
             <span>نمودار ریسک ناشی از مرگ طبیعی</span>
           </div>
           <div class="text-center !mt-4">
-            <mr-knob [value]="parseInt(selectedSurvey?.data?.risk.naturalDeath | number:'1.0-0')"></mr-knob>
+            <mr-knob *ngIf="selectedSurvey?.data?.risk.naturalDeath"
+                     [value]="selectedSurvey?.data?.risk.naturalDeath"></mr-knob>
           </div>
         </mr-widget>
       </div>
@@ -90,7 +88,7 @@
             <span>نمودار ریسک ناشی از بیماری</span>
           </div>
           <div class="text-center !mt-4">
-            <mr-knob [value]="parseInt(selectedSurvey?.data?.risk.disease | number:'1.0-0')"></mr-knob>
+            <mr-knob *ngIf="selectedSurvey?.data?.risk.disease" [value]="selectedSurvey?.data?.risk.disease"></mr-knob>
           </div>
         </mr-widget>
       </div>
@@ -100,23 +98,28 @@
           <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
 
           <div class="mb-2 bg-light-3 !py-3 !px-4 !rounded">
-            <div>شسیش سیخشه یتخشهس یتخش یهتخشهای ظهعازهظع از</div>
-          </div>
+            <div *ngIf="selectedSurvey?.data?.reduction?.removeHighRiskDiseases.length>0">
+              <span>بیماری </span>
+              <span *ngIf="selectedSurvey?.data?.reduction?.removeHighRiskDiseases.length>1"> های </span>
+              <span *ngFor="let illness of selectedSurvey?.data?.reduction?.removeHighRiskDiseases; let last=last">
+                <span class="font-bold !text-primary">{{IllnessEnum[illness]}}</span>
+                <span *ngIf="!last"> و </span>
+              </span>
+              <span> از پوشش حذف شود. </span>
+            </div>
 
-          <div class="bg-light-3 !py-3 !px-4 rounded">
-            <div>شسیش سیخشه یتخشهس شهسعیا شهای سهاب یبهالیهال یسعابسهعاییسها بسهعبا سیهعا بیسهعبا یسهع بسیبهع سیهع
-              باسیخه
-              بسخهل بلهعال بیخه
+            <div>
+              <span>توصیه نمیشود بیماری خاصی از پوشش بیمه حذف شود.</span>
             </div>
           </div>
         </mr-widget>
       </div>
 
-      <div class="col-span-2 bg-white !rounded !p-4">
-        <mr-widget [loading]="loadingService.getLoader('survey')">
-          <p-messages [(value)]="messages2" [enableService]="false" [closable]="false"></p-messages>
-        </mr-widget>
-      </div>
+      <!--      <div class="col-span-2 bg-white !rounded !p-4">-->
+      <!--        <mr-widget [loading]="loadingService.getLoader('survey')">-->
+      <!--          <p-messages [(value)]="messages2" [enableService]="false" [closable]="false"></p-messages>-->
+      <!--        </mr-widget>-->
+      <!--      </div>-->
     </div>
   </div>
 </div>

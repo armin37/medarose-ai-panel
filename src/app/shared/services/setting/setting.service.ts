@@ -3,7 +3,7 @@ import {RequestService} from "../request/request.service";
 import {LoadingService} from "../loading/loading.service";
 import {InsuranceEmployeeInfoService} from "../insurance-employee-info/insurance-employee-info.service";
 import {map} from "rxjs/operators";
-import {CoverageSetting, SettingModel} from "../../../auth/model/setting.model";
+import {CoverageSetting, CoverageSettingPatchRequest, SettingModel} from "../../../auth/model/setting.model";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -20,6 +20,12 @@ export class SettingService {
   loadCompany(): Observable<CoverageSetting> {
     const res$ = this.requestService.sendRequest('GET', `insurance-company/${this.insuranceEmployeeInfoService.user.companyId}`);
     const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'setting').pipe(map((a: SettingModel) => a.data.coverageSetting));
+    return loading$;
+  }
+
+  updateSettings(requestBody: CoverageSettingPatchRequest): Observable<any> {
+    const res$ = this.requestService.sendRequest('PATCH', `insurance-company/${this.insuranceEmployeeInfoService.user.companyId}/coverage-setting`, requestBody);
+    const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'setting').pipe(map((a) => a));
     return loading$;
   }
 }

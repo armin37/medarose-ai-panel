@@ -8,7 +8,8 @@ export class SurveyModel {
   createDate?: Date;
   updateDate?: Date;
   updateDateStr?: string;
-  createDateStr: string;
+  createDateStr?: string;
+  createDateTimeStr: string;
   result?: ResultIllnesses;
 
 
@@ -17,6 +18,7 @@ export class SurveyModel {
 
     this.updateDateStr = moment(data.updateDate).format('jYYYY/jMM/jDD');
     this.createDateStr = moment(data.createDate).format('jYYYY/jMM/jDD');
+    this.createDateTimeStr = moment(data.createDate).format('jYYYY/jMM/jDD HH:MM');
   }
 }
 

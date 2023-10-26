@@ -7,12 +7,13 @@ import {UsersSurveysResponseModel} from "../../../auth/model/usersSurveysRespons
 import {SurveyModel} from "../../../auth/model/survey.model";
 import {InsuredService} from "../../../shared/services/insured/insured.service";
 import {ActivatedRoute} from "@angular/router";
-import {DecimalPipe, NgIf} from "@angular/common";
+import {CommonModule, DecimalPipe, NgIf} from "@angular/common";
 import {SurveyDetailResponseModel} from "../../../auth/model/surveyDetailResponse.model";
 import {MrWidgetComponent} from "../../../components/mr-widget/mr-widget.component";
 import {LoadingService} from "../../../shared/services/loading/loading.service";
 import {SurveyDetailComponent} from "../survey-detail/survey-detail.component";
 import {UserAllDataModel} from "../../../auth/model/userResponseModel";
+import {IllnessEnum} from "../../../auth/model/illnessEnum";
 
 @Component({
   selector: 'app-coverage-rate',
@@ -20,10 +21,10 @@ import {UserAllDataModel} from "../../../auth/model/userResponseModel";
   styleUrls: ['./coverage-rate.component.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     MrKnobComponent,
     MessagesModule,
     MrSelectComponent,
-    NgIf,
     MrWidgetComponent,
     SurveyDetailComponent,
     DecimalPipe
@@ -52,7 +53,7 @@ export class CoverageRateComponent implements OnInit {
     this.messages = [{
       icon: ' ',
       severity: 'success',
-      summary: 'شخهسی خشهیت شها یشهعزاظهطاز هعازشسهعای شهعازظهعزا ظطهعز اسشهعا یسشهاطظهاز '
+      summary: 'پیشنهاد حذف بیماری ها از پوشش'
     }];
 
     this.messages2 = [{
@@ -73,12 +74,13 @@ export class CoverageRateComponent implements OnInit {
   loadSurveys(event?) {
     const params = new URLSearchParams();
     params.set('userId', this.userId);
+    params.set('isComplete', 'true');
     this.insuredService.searchSurveys(params).subscribe({
       next: (res: UsersSurveysResponseModel) => {
         res = new UsersSurveysResponseModel(res);
         this.allSurveys = [];
-        const noSelect = new SurveyModel({createDateStr: '- - -'});
-        noSelect.createDateStr = '- - -'
+        const noSelect = new SurveyModel({createDateTimeStr: '- - -'});
+        noSelect.createDateTimeStr = '- - -'
         this.allSurveys.push(noSelect);
         this.allSurveys.push(...res.data.data);
       },
@@ -110,4 +112,5 @@ export class CoverageRateComponent implements OnInit {
   }
 
   protected readonly parseInt = parseInt;
+  protected readonly IllnessEnum = IllnessEnum;
 }

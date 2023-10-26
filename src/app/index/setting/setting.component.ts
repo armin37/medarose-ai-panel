@@ -122,7 +122,7 @@ export class SettingComponent implements OnInit {
       ]
     }
 
-    //todo
+    this.settingService.updateSettings(requestBody).subscribe(res => console.log(res));
   }
 
   asFormControl(control: AbstractControl): FormControl {

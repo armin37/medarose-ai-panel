@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {KnobModule} from 'primeng/knob';
 import {FormsModule} from "@angular/forms";
@@ -10,7 +10,13 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './mr-knob.component.html',
   styleUrls: ['./mr-knob.component.scss']
 })
-export class MrKnobComponent {
+export class MrKnobComponent implements OnInit {
   @Input({required: true}) value: number;
+
+  ngOnInit(): void {
+    if (this.value) {
+      this.value = Math.round(this.value);
+    }
+  }
 
 }
