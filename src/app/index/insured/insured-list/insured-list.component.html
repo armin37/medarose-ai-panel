@@ -2,7 +2,6 @@
   <p-table
     [value]="data"
     [lazy]="true"
-    (onLazyLoad)="loadUsers($event)"
     responsiveLayout="stack"
     [breakpoint]="'1359px'"
     dataKey="id"
@@ -10,6 +9,9 @@
     [rows]="10"
     [totalRecords]="totalRecords"
     [loading]="dataLoading"
+    (onFilter)="addFilters($event)"
+    (onPage)="pageChange($event)"
+    [rowsPerPageOptions]="[10, 25, 50]"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -24,18 +26,42 @@
       <tr>
         <th></th>
         <th>
-          <p-columnFilter type="text" field="name" [showMatchModes]="false" [showClearButton]="false" [showMenu]="false"></p-columnFilter>
+          <p-columnFilter type="text" field="name" [showMatchModes]="false" [showClearButton]="false"
+                          [showMenu]="false"></p-columnFilter>
         </th>
 
         <th>
-          <p-columnFilter type="text" field="nationalCode" [showMatchModes]="false" [showClearButton]="false" [showMenu]="false" matchMode="contains"></p-columnFilter>
+          <p-columnFilter type="text" field="nationalCode" [showMatchModes]="false" [showClearButton]="false"
+                          [showMenu]="false" matchMode="contains"></p-columnFilter>
         </th>
 
         <th>
-          <p-columnFilter type="text" field="phone" [showMatchModes]="false" [showClearButton]="false" [showMenu]="false" matchMode="contains"></p-columnFilter>
+          <p-columnFilter type="text" field="phone" [showMatchModes]="false" [showClearButton]="false"
+                          [showMenu]="false" matchMode="contains"></p-columnFilter>
         </th>
 
-        <th></th>
+        <th style="min-width: 8rem" class="text-center">
+          <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false"
+                          [showOperator]="false" [showAddButton]="false" [showClearButton]="false">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <div class="col-span-12 lg:col-span-3 flex items-center !mb-2">
+                <label class="!me-1">از تاریخ: </label>
+                <ng-persian-datepicker [uiTodayBtnEnable]="false" [dateInitValue]="false">
+                  <input type="text" [formControl]="fromDateValue"/>
+                </ng-persian-datepicker>
+              </div>
+
+              <div class="col-span-12 lg:col-span-3 flex items-center">
+                <label class="!me-1">تا تاریخ: </label>
+                <ng-persian-datepicker [dateInitValue]="false">
+                  <input type="text" [formControl]="toDateValue"/>
+                </ng-persian-datepicker>
+              </div>
+            </ng-template>
+          </p-columnFilter>
+
+        </th>
+
         <th style="min-width: 42rem"></th>
       </tr>
 
@@ -49,9 +75,12 @@
         <td class="text-center"><span class="inline-block ltr">{{ user.phone }}</span></td>
         <td>{{ user.createDateStr }}</td>
         <td>
-          <mr-button (clicked)="sendSurvey(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="ارسال پرسشنامه"></mr-button>
-          <mr-button (clicked)="toSurveys(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="مشاهده نتایج"></mr-button>
-          <mr-button (clicked)="toCoverageRate(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS" label="پیشنهاد نرخ پوشش"></mr-button>
+          <mr-button (clicked)="sendSurvey(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS"
+                     label="ارسال پرسشنامه"></mr-button>
+          <mr-button (clicked)="toSurveys(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS"
+                     label="مشاهده نتایج"></mr-button>
+          <mr-button (clicked)="toCoverageRate(user.id)" size="sm" class="me-1" [color]="ColorEnum.SUCCESS"
+                     label="پیشنهاد نرخ پوشش"></mr-button>
           <mr-button size="sm" class="me-1" label="کاهش ریسک"></mr-button>
           <mr-button size="sm" label="تخصیص پزشک"></mr-button>
         </td>

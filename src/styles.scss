@@ -35,3 +35,27 @@ mr-widget {
   justify-content: center;
   min-height: 10rem;
 }
+
+ng-persian-datepicker {
+  position: relative;
+
+  .datepicker-outer-container {
+    position: absolute;
+    box-shadow: 0px 1px 10px 6px #aaa;
+    z-index: 99;
+  }
+
+  input {
+    width: 100%;
+    font-size: var(--font-1);
+    border: 2px solid var(--input-border-color);
+    height: var(--input-height);
+    border-radius: var(--radius-2);
+    color: #6c6c6c;
+    background: #fff;
+    padding: 0.5rem 0.75rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}

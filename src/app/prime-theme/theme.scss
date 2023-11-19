@@ -965,7 +965,8 @@ p-chips.p-chips-clearable .p-chips-clear-icon {
   display: block;
   background: #fff;
   border: 2px solid var(--input-border-color);
-  border-radius: var(--radius-2)
+  border-radius: var(--radius-2);
+  align-items: center;
 }
 
 .p-dropdown:not(.p-disabled):hover {
@@ -4229,10 +4230,6 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   margin-left: .5rem;
   margin-right: .5rem;
   height: 2.857rem
-}
-
-.p-paginator .p-dropdown .p-dropdown-label {
-  padding-right: 0
 }
 
 .p-paginator .p-paginator-page-input {
