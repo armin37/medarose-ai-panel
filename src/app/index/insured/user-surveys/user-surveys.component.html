@@ -2,7 +2,6 @@
   <p-table
     [value]="data"
     [lazy]="true"
-    (onLazyLoad)="loadSurveys($event)"
     responsiveLayout="stack"
     [breakpoint]="'1359px'"
     dataKey="id"
@@ -10,6 +9,9 @@
     [rows]="10"
     [totalRecords]="totalRecords"
     [loading]="dataLoading"
+    (onFilter)="addFilters($event)"
+    (onPage)="pageChange($event)"
+    [rowsPerPageOptions]="[10, 25, 50]"
   >
     <ng-template pTemplate="header">
       <tr>

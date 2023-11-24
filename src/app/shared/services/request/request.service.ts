@@ -46,6 +46,7 @@ export class RequestService {
     let headers = this.generateHeader();
     let sendUrl = this.ENDPOINT + url;
     let fullResponse = false;
+    let responseType: 'json' | 'blob' | 'text' = 'json';
 
     args.map(arg => {
       if (arg.headers) {
@@ -59,13 +60,18 @@ export class RequestService {
       if (arg.dontConcatEndpoint) {
         sendUrl = url;
       }
+
+      if (arg.responseType) {
+        responseType = arg.responseType;
+      }
     });
 
     const res$ = this.httpClient.request(method, sendUrl, {
       body,
       headers,
       observe: 'response',
-      withCredentials: false
+      withCredentials: false,
+      responseType: responseType
     }).pipe(
       map(res => args.find(arg => arg.fullResponse) ? res : res.body),
       shareReplay()

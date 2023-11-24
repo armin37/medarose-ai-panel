@@ -1,4 +1,5 @@
 import * as moment from 'jalali-moment';
+import {QuestionModel} from "./question.model";
 
 export class SurveyModel {
   id?: number;
@@ -11,6 +12,7 @@ export class SurveyModel {
   createDateStr?: string;
   createDateTimeStr: string;
   result?: ResultIllnesses;
+  answers?: { answers: any, id: number, question: QuestionModel }[];
 
 
   constructor(data: SurveyModel) {

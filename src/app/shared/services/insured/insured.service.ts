@@ -13,8 +13,9 @@ export class InsuredService {
 
   constructor(private requestService: RequestService,
               private loadingService: LoadingService) {
-    loadingService.createLoader('user')
-    loadingService.createLoader('survey')
+    loadingService.createLoader('user');
+    loadingService.createLoader('survey');
+    loadingService.createLoader('download');
   }
 
   loadUser(userId: number): Observable<UserAllDataModel> {
@@ -25,7 +26,7 @@ export class InsuredService {
     return loading$;
   };
 
-  searchUsers(params) {
+  searchUsers(params: URLSearchParams) {
     const res$ = this.requestService.sendRequest(`GET`, `insurance-employee/user?${params}`);
     return res$;
   };
@@ -45,6 +46,20 @@ export class InsuredService {
 
     const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'survey');
 
+    return loading$;
+  }
+
+  downloadSurveyXLSX(params: URLSearchParams) {
+    const res$ = this.requestService.sendRequest('GET', `insurance-employee/report/excel?${params}`, {}, false, {responseType: 'blob'});
+
+    const loading$ = this.loadingService.showLoaderUntilComplete(res$, 'download');
+    loading$.subscribe(data => {
+      const blob = new Blob([data], { type: 'application/octet-stream' });
+      const link= document.createElement('a');
+      link.href = window.URL.createObjectURL(data);
+      link.download = 'users.xlsx';
+      link.click();
+    })
     return loading$;
   }
 }

@@ -11,6 +11,7 @@ import {ColorEnum} from "../../../shared/enums/colorEnum";
 import {InsuredService} from "../../../shared/services/insured/insured.service";
 import {NgPersianDatepickerModule} from "ng-persian-datepicker";
 import * as moment from 'jalali-moment';
+import {LoadingService} from "../../../shared/services/loading/loading.service";
 
 @Component({
   selector: 'app-insured-list',
@@ -33,7 +34,9 @@ export class InsuredListComponent implements OnInit {
 
   protected readonly ColorEnum = ColorEnum;
 
-  constructor(private insuredService: InsuredService, private router: Router) {
+  constructor(private insuredService: InsuredService,
+              private router: Router,
+              public loadingService: LoadingService) {
   }
 
   ngOnInit(): void {
@@ -68,10 +71,10 @@ export class InsuredListComponent implements OnInit {
       }
     }
     if (this.fromDateValue.value) {
-      this.params.set('dateFrom', moment.from(this.fromDateValue.value, 'en', 'jYYYY/jMM/jDD').valueOf().toString());
+      this.params.set('dateFrom', moment.from(this.fromDateValue.value, 'fa', 'jYYYY/jMM/jDD').toISOString());
     }
-    if (this.fromDateValue.value) {
-      this.params.set('dateTo', moment.from(this.toDateValue.value, 'en', 'jYYYY/jMM/jDD').valueOf().toString());
+    if (this.toDateValue.value) {
+      this.params.set('dateTo', moment.from(this.toDateValue.value, 'fa', 'jYYYY/jMM/jDD').toISOString());
     }
 
     this.setLimitOffetParams();
@@ -86,6 +89,13 @@ export class InsuredListComponent implements OnInit {
         this.dataLoading = false;
       }
     )
+  }
+
+  downloadXLSX() {
+    const duplicateParams: URLSearchParams = new URLSearchParams(this.params) ;
+    duplicateParams.delete('offset')
+    duplicateParams.delete('limit')
+    this.insuredService.downloadSurveyXLSX(duplicateParams);
   }
 
   toSurveys(userId) {

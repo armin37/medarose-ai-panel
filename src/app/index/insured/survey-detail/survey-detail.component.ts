@@ -5,6 +5,9 @@ import {MrKnobComponent} from "../../../components/mr-knob/mr-knob.component";
 import {MrProgressComponent} from "../../../components/mr-progress/mr-progress.component";
 import {InsuredService} from "../../../shared/services/insured/insured.service";
 import {SurveyDetailResponseModel} from "../../../auth/model/surveyDetailResponse.model"
+import {data} from "autoprefixer";
+import {UiCodeEnumModel} from "../../../auth/model/uiCodeEnum.model";
+import {QuestionTypeEnumModel} from "../../../auth/model/questionTypeEnum.model";
 
 @Component({
   selector: 'survey-detail',
@@ -38,4 +41,7 @@ export class SurveyDetailComponent implements OnInit {
   }
 
 
+    protected readonly data = data;
+  protected readonly UiCodeEnumModel = UiCodeEnumModel;
+  protected readonly QuestionTypeEnumModel = QuestionTypeEnumModel;
 }

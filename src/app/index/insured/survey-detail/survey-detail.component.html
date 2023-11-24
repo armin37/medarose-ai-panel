@@ -1,64 +1,119 @@
-<div style="max-width: 800px; margin: auto">
-  <div *ngIf="showGauge" class="text-center mb-8 bg-white rounded-lg !py-6">
-    <div class="flex items-center justify-center !mb-3">
-      <i class="pi pi-chart-pie text-xl me-2"></i>
-      <span>وضعیت کلی ریسک بیماری ها</span>
+<div class="grid grid-cols-6 gap-3">
+  <div class="col-span-4 lg:col-span-2">
+    <div *ngIf="showGauge" class="text-center mb-8 bg-white rounded-lg !py-6">
+      <div class="flex items-center justify-center !mb-3">
+        <i class="pi pi-chart-pie text-xl me-2"></i>
+        <span>وضعیت کلی ریسک بیماری ها</span>
+      </div>
+      <mr-knob *ngIf="survey" [value]="survey?.data.average"></mr-knob>
     </div>
-    <mr-knob *ngIf="survey" [value]="survey?.data.average"></mr-knob>
+
+    <div class="bg-white rounded-lg mb-8 !py-4">
+      <div class="illness">
+        <p>سرطان ریه</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.LungCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان معده</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.GastricCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان روده بزرگ</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.ColonCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان پانکراس</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.PancreaticCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان دهانه رحم</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.CervicalCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان تخمدان</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.OvarianCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان سینه</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.BreastCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+      <div class="illness">
+        <p>سرطان پروستات</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.ProstateCancer | number:'1.0-0'"></mr-progress>
+      </div>
+
+
+      <div class="illness">
+        <p>سکته مغزی</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.BrainStroke | number:'1.0-0'"></mr-progress>
+      </div>
+
+
+      <div class="illness">
+        <p>سکته قلبی</p>
+        <mr-progress [value]="survey?.data.userSurvey.result?.HeartStroke | number:'1.0-0'"></mr-progress>
+      </div>
+
+    </div>
   </div>
 
-  <div class="bg-white rounded-lg mb-8 !py-6">
-    <div class="illness">
-      <p>سرطان ریه</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.LungCancer | number:'1.0-0'"></mr-progress>
+  <div class="col-span-4 lg:col-span-4">
+    <div *ngIf="showGauge" class="text-center mb-8 bg-white rounded-lg !py-6 !px-4">
+      <div class="flex items-center justify-center !mb-3">
+        <i class="pi pi-check-square text-xl me-2"></i>
+        <span>پاسخ های کاربر</span>
+      </div>
+
+      <div *ngFor="let question of survey?.data.userSurvey.answers; let index=index" class="text-start !mb-2">
+        <span class="text-dark-2">{{index + 1}}. {{question.question.text}}</span>
+
+        <span [ngSwitch]="question.question.type" class="text-dark-2 font-medium">
+          <ng-container *ngSwitchCase="QuestionTypeEnumModel.OpenEnded">
+            {{question?.answers[0]}}
+          </ng-container>
+
+          <ng-container *ngSwitchCase="QuestionTypeEnumModel.SingleChoice">
+            {{question?.answers[0].text}}
+          </ng-container>
+
+          <ng-container *ngSwitchCase="question.question.type === QuestionTypeEnumModel.MultiChoiceWithData ||
+                                       question.question.type === QuestionTypeEnumModel.SingleChoiceWithData ? question.question.type : ''">
+            <ng-container *ngFor="let ans of question.answers; let last=last">
+                {{ans.text}}
+              <ng-container *ngIf="ans.data">({{ans.data / 30 | number : '1.0-0'}} ماه)</ng-container>
+              <ng-container *ngIf="!last">, </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="QuestionTypeEnumModel.MultiChoice">
+            <ng-container *ngFor="let ans of question.answers; let last=last">
+              {{ans.text}}
+              <ng-container *ngIf="!last">, </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="QuestionTypeEnumModel.MultiInput">
+            <ng-container *ngFor="let ans of question.answers; let last=last">
+              {{ans.drug}}({{ans.duration}} ماه)
+              <ng-container *ngIf="!last">, </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="QuestionTypeEnumModel.FileUpload">
+            <ng-container *ngFor="let ans of question.answers; let last=last">
+              <a [href]="ans" target="_blank">لینک</a>
+              <ng-container *ngIf="!last">, </ng-container>
+            </ng-container>
+          </ng-container>
+        </span>
+      </div>
     </div>
-
-    <div class="illness">
-      <p>سرطان معده</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.GastricCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-    <div class="illness">
-      <p>سرطان روده بزرگ</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.ColonCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-    <div class="illness">
-      <p>سرطان پانکراس</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.PancreaticCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-    <div class="illness">
-      <p>سرطان دهانه رحم</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.CervicalCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-    <div class="illness">
-      <p>سرطان تخمدان</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.OvarianCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-    <div class="illness">
-      <p>سرطان سینه</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.BreastCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-    <div class="illness">
-      <p>سرطان پروستات</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.ProstateCancer | number:'1.0-0'"></mr-progress>
-    </div>
-
-
-    <div class="illness">
-      <p>سکته مغزی</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.BrainStroke | number:'1.0-0'"></mr-progress>
-    </div>
-
-
-    <div class="illness">
-      <p>سکته قلبی</p>
-      <mr-progress [value]="survey?.data.userSurvey.result?.HeartStroke | number:'1.0-0'"></mr-progress>
-    </div>
-
   </div>
 </div>

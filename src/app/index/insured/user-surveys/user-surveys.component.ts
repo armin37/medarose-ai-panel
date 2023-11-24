@@ -10,7 +10,7 @@ import {SurveyModel} from "../../../auth/model/survey.model";
 import {UsersSurveysResponseModel} from "../../../auth/model/usersSurveysResponse.model";
 import {ColorEnum} from "../../../shared/enums/colorEnum";
 import {CheckboxModule} from "primeng/checkbox";
-import {FormsModule} from "@angular/forms";
+import {FormControl, FormsModule} from "@angular/forms";
 import {navAbsoluteURLS} from "../../_nav";
 
 @Component({
@@ -25,6 +25,11 @@ export class UserSurveysComponent implements OnInit {
   data: SurveyModel[];
   totalRecords: number;
   dataLoading = false;
+  offset = 0;
+  limit = 10;
+  fromDateValue = new FormControl();
+  toDateValue = new FormControl();
+  params = new URLSearchParams();
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -33,13 +38,14 @@ export class UserSurveysComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
+    this.params.set('userId', this.userId);
     this.loadSurveys();
   }
 
-  loadSurveys(event?) {
+  loadSurveys() {
     this.dataLoading = true;
 
-    this.insuredService.searchSurveys(this.addFilters(event?.filters)).subscribe({
+    this.insuredService.searchSurveys(this.params).subscribe({
       next: (res: UsersSurveysResponseModel) => {
         res = new UsersSurveysResponseModel(res);
         this.data = res.data.data;
@@ -54,15 +60,29 @@ export class UserSurveysComponent implements OnInit {
     })
   }
 
-  addFilters(filters) {
-    const params = new URLSearchParams();
-    params.set('userId', this.userId);
-    for (const key in filters) {
-      if (filters[key].value !== null && (filters[key].value || filters[key].matchMode === 'equals')) {
-        params.set(key, filters[key].value);
+  addFilters(event:any) {
+    this.offset = 0;
+    this.params = new URLSearchParams();
+    this.params.set('userId', this.userId);
+    for (const key in event?.filters) {
+      if (event?.filters[key].value !== null && (event?.filters[key].value || event?.filters[key].matchMode === 'equals')) {
+        this.params.set(key, event?.filters[key].value);
       }
     }
-    return params;
+    this.setLimitOffetParams();
+    this.loadSurveys()
+  }
+
+  pageChange(event: any) {
+    this.offset = event.first;
+    this.limit = event.rows;
+    this.setLimitOffetParams();
+    this.loadSurveys();
+  }
+
+  setLimitOffetParams() {
+    this.params.set('offset', this.offset.toString());
+    this.params.set('limit', this.limit.toString());
   }
 
   toSurveyDetail(id) {
